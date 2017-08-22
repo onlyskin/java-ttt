@@ -6,44 +6,50 @@ import static org.junit.Assert.*;
 
 public class BoardTest {
     @Test
-    public void xWonReturnsFalse0() {
+    public void wonReturnsFalse0() {
         Board b = new Board();
-        assertFalse(b.xWon());
+        assertFalse(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsTrue0() {
+    public void wonReturnsTrue0() {
         Board b = new Board(new String[][]{{"X","X","X"},{"-","-","-"},{"-","-","-"}});
-        assertTrue(b.xWon());
+        assertTrue(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsFalse1() {
+    public void wonReturnsFalse1() {
         Board b = new Board(new String[][]{{"X","-","X"},{"-","-","-"},{"-","-","-"}});
-        assertFalse(b.xWon());
+        assertFalse(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsFalse2() {
+    public void wonReturnsFalse2() {
         Board b = new Board(new String[][]{{"-","-","X"},{"-","-","X"},{"-","-","-"}});
-        assertFalse(b.xWon());
+        assertFalse(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsTrue1() {
+    public void wonReturnsTrue1() {
         Board b = new Board(new String[][]{{"-","-","X"},{"-","-","X"},{"-","-","X"}});
-        assertTrue(b.xWon());
+        assertTrue(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsTrue2() {
+    public void wonReturnsTrue2() {
         Board b = new Board(new String[][]{{"-","-","X"},{"-","X","-"},{"X","-","-"}});
-        assertTrue(b.xWon());
+        assertTrue(b.won("X"));
     }
 
     @Test
-    public void xWonReturnsTrue3() {
+    public void wonReturnsTrue3() {
         Board b = new Board(new String[][]{{"X","-","-"},{"-","X","-"},{"-","-","X"}});
-        assertTrue(b.xWon());
+        assertTrue(b.won("X"));
+    }
+
+    @Test
+    public void wonHandlesO() {
+        Board b = new Board(new String[][]{{"O","-","-"},{"-","O","-"},{"-","-","O"}});
+        assertTrue(b.won("O"));
     }
 }
