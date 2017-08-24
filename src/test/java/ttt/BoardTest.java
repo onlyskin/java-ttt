@@ -104,15 +104,22 @@ public class BoardTest {
     @Test
     public void playsInEmptyCell() throws Exception {
         Board b0 = new Board(new String[][]{{"O","-","-"},{"-","-","-"},{"-","-","-"}});
-        Board b1 = b0.play(0, 1, "X");
-        assertEquals("O", b1.getCell(0, 0));
-        assertEquals("X", b1.getCell(0, 1));
+        Board b1 = b0.play(1, "X");
+        assertEquals("O", b1.getCell(0));
+        assertEquals("X", b1.getCell(1));
+    }
+
+    @Test
+    public void playsInCorrectCell() throws Exception {
+        Board b0 = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
+        Board b1 = b0.play(8, "O");
+        assertEquals("O", b1.getCell(8));
     }
     
     @Test(expected = IndexOutOfBoundsException.class)
     public void raisesErrorIfCellTaken() {
         Board b0 = new Board(new String[][]{{"O","-","-"},{"-","-","-"},{"-","-","-"}});
-        b0.play(0, 0, "X");
+        b0.play(0, "X");
     }
 
 }

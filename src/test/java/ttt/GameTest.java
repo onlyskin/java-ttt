@@ -16,11 +16,18 @@ public class GameTest {
 
     @Test
     public void RunsGameToEnd() throws Exception {
-        runGameWithUserInput("0\n1\n3\n4\n6");
-        assertEquals("Start\n---\n---\n---\n\n", out);
+        runGameWithUserInput("0\n1\n3\n4\n6\nexit\n");
+        assertEquals("start\n" +
+                "---\n---\n---\n\n" +
+                "X--\n---\n---\n\n" +
+                "XO-\n---\n---\n\n" +
+                "XO-\nX--\n---\n\n" +
+                "XO-\nXO-\n---\n\n" +
+                "XO-\nXO-\nX--\n\n" +
+                "X won\n", out.toString());
     }
 
-    private void runGameWithUserInput(String userInput) {
+    private void runGameWithUserInput(String userInput) throws Exception {
         InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();

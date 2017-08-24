@@ -13,21 +13,21 @@ public class Board {
         this.cells = cells;
     }
 
-    public Board play(int x, int y, String marker) {
-        if (!this.getCell(x, y).equals("-")) {
+    public Board play(int position, String marker) {
+        if (!this.getCell(position).equals("-")) {
             throw new IndexOutOfBoundsException();
         }
         Board b = new Board(this.cells);
-        b.setCell(x, y, marker);
+        b.setCell(position, marker);
         return b;
     }
 
-    public String getCell(int x, int y) {
-        return this.cells[x][y];
+    public String getCell(int position) {
+        return this.cells[position / 3][position % 3];
     }
 
-    private void setCell(int x, int y, String marker) {
-        this.cells[x][y] = marker;
+    private void setCell(int position, String marker) {
+        this.cells[position / 3][position % 3] = marker;
     }
 
     public boolean tie() {
