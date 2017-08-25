@@ -33,6 +33,12 @@ public class Game {
         
     }
 
+    private void printEndMessage(Board b) {
+        if (b.tie()) printStream.println("a tie");
+        else if (b.won("X")) printStream.println("X won");
+        else printStream.println("O won");
+    }
+
     public void start() throws IOException, NumberFormatException {
         this.running = true;
         Board b = new Board();
@@ -54,9 +60,7 @@ public class Game {
                 break;
             }
         }
-        if (b.tie()) printStream.println("a tie");
-        else if (b.won("X")) printStream.println("X won");
-        else printStream.println("O won");
+        printEndMessage(b);
     }
 
     public static void main(String[] args) throws IOException {
