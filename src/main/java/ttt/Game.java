@@ -2,6 +2,7 @@ package ttt;
 
 import java.io.PrintStream;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class Game {
@@ -23,13 +24,15 @@ public class Game {
         String output = ""; 
         for (int i=0;i<9;i++) {
             output = output + board.getCell(i);
-            if (i % 3 == 2) {
-                output = output + "\n";
-            }
+            if (i % 3 == 2) output = output + "\n";
         }
         printStream.println(output);
     }
     
+    private void handleLine(String line) {
+        
+    }
+
     public void start() throws IOException, NumberFormatException {
         this.running = true;
         Board b = new Board();
@@ -54,5 +57,11 @@ public class Game {
         if (b.tie()) printStream.println("a tie");
         else if (b.won("X")) printStream.println("X won");
         else printStream.println("O won");
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Game g = new Game(reader, System.out);
+        g.start();
     }
 }
