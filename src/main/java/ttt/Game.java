@@ -7,37 +7,28 @@ import java.io.IOException;
 
 public class Game {
     BufferedReader reader;
-    PrintStream printStream;
+    Ui ui;
     boolean running;
     String[] players;
     int turn;
 
-    public Game(BufferedReader reader, PrintStream printStream) {
+    public Game(BufferedReader reader, Ui ui) {
         this.reader = reader;
-        this.printStream = printStream;
+        this.ui = ui;
         this.running = false;
         players = new String[]{"X", "O"};
         turn = 0;
     }
 
-    private void printBoard(Board board) {
-        String output = ""; 
-        for (int i=0;i<9;i++) {
-            output = output + board.getCell(i);
-            if (i % 3 == 2) output = output + "\n";
-        }
-        printStream.println(output);
-    }
-    
     private void printStartMessage(Board b) {
-        printStream.println("start");
-        printBoard(b);
+        ui.printMessage("start");
+        ui.printBoard(b);
     }
     
     private void printEndMessage(Board b) {
-        if (b.tie()) printStream.println("a tie");
-        else if (b.won("X")) printStream.println("X won");
-        else printStream.println("O won");
+        if (b.tie()) ui.printMessage("tie");
+        else if (b.won("X")) ui.printWinner("X");
+        else ui.printWinner("O");
     }
 
     public void start() throws IOException, NumberFormatException {
@@ -54,7 +45,7 @@ public class Game {
             }
             int position = Integer.parseInt(line);
             b = b.play(position, players[turn % 2]);
-            printBoard(b);
+            ui.printBoard(b);
             turn++;
             if (b.gameOver()) {
                 break;
@@ -65,7 +56,8 @@ public class Game {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Game g = new Game(reader, System.out);
+        Ui ui = new Ui(System.out);
+        Game g = new Game(reader, ui);
         g.start();
     }
 }

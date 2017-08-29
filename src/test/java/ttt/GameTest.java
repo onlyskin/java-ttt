@@ -49,7 +49,8 @@ public class GameTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
         PrintStream output = new PrintStream(out);
-        Game game = new Game(reader, output);
+        Ui ui = new Ui(output);
+        Game game = new Game(reader, ui);
         game.start();
     }
 }
