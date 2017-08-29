@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.lang.Integer;
 
 public class Ui {
     private final PrintStream printStream;
@@ -19,12 +20,24 @@ public class Ui {
         messages.put("tie", "a tie");
     }
 
-    public String getBoardString(Board board) {
-        String output = ""; 
-        for (int i=0;i<9;i++) {
-            output = output + board.getCell(i);
-            if (i % 3 == 2) output = output + "\n";
+    private String cellString(int i, Board board) {
+        if (board.getCell(i)=="-") {
+            return Integer.toString(i);
         }
+        return board.getCell(i);
+    }
+
+    public String getBoardString(Board board) {
+        String output = "┌───┬───┬───┐\n│ " +
+            cellString(0, board) + " │ " +
+            cellString(1, board) + " │ " +
+            cellString(2, board) + " │\n│───│───│───│\n│ " +
+            cellString(3, board) + " │ " +
+            cellString(4, board) + " │ " +
+            cellString(5, board) + " │\n│───│───│───│\n│ " +
+            cellString(6, board) + " │ " +
+            cellString(7, board) + " │ " +
+            cellString(8, board) + " │\n└───┴───┴───┘";
         return output;
     }
 

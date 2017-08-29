@@ -21,7 +21,9 @@ public class UiTest {
     public void printsBoard() throws Exception {
         Board board = new Board();
         ui.printBoard(board);
-        assertEquals("---\n---\n---\n\n", out.toString());
+        assertEquals("┌───┬───┬───┐\n│ 0 │ 1 │ 2 │\n│───│───│───│\n" +
+            "│ 3 │ 4 │ 5 │\n│───│───│───│\n│ 6 │ 7 │ 8 │\n└───┴───┴───┘\n",
+            out.toString());
     }
 
     @Test
