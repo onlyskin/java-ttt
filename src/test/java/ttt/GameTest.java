@@ -3,6 +3,7 @@ package ttt;
 import org.junit.Test;
 import org.junit.Ignore;
 import static org.junit.Assert.*;
+
 import java.io.PrintStream;
 import java.io.Reader;
 import java.io.BufferedReader;
@@ -49,8 +50,8 @@ public class GameTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
         PrintStream output = new PrintStream(out);
-        Ui ui = new Ui(output);
-        Game game = new Game(reader, ui);
+        Ui ui = new Ui(reader, output);
+        Game game = new Game(ui);
         game.start();
     }
 }

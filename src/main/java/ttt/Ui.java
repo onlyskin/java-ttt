@@ -1,15 +1,19 @@
 package ttt;
 
 import java.io.PrintStream;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 import java.util.Map;
 import java.util.HashMap;
 
 public class Ui {
     private final PrintStream printStream;
+    private final BufferedReader reader;
     private final Map<String, String> messages = new HashMap<>();
 
-    public Ui(PrintStream printStream) {
+    public Ui(BufferedReader reader, PrintStream printStream) {
+        this.reader = reader;
         this.printStream = printStream;
         messages.put("start", "start");
         messages.put("tie", "a tie");
@@ -31,5 +35,9 @@ public class Ui {
 
     public void printWinner(String marker) {
         printStream.println(marker + " won");
+    }
+    
+    public String getInput() throws IOException {
+        return reader.readLine();
     }
 }
