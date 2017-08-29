@@ -29,10 +29,6 @@ public class Game {
         printStream.println(output);
     }
     
-    private void handleLine(String line) {
-        
-    }
-
     private void printStartMessage(Board b) {
         printStream.println("start");
         printBoard(b);
