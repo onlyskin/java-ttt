@@ -19,13 +19,17 @@ public class Ui {
         messages.put("tie", "a tie");
     }
 
-    public void printBoard(Board board) {
+    public String getBoardString(Board board) {
         String output = ""; 
         for (int i=0;i<9;i++) {
             output = output + board.getCell(i);
             if (i % 3 == 2) output = output + "\n";
         }
-        printStream.println(output);
+        return output;
+    }
+
+    public void printBoard(Board board) {
+        printStream.println(getBoardString(board));
     }
 
     public void printMessage(String id) {
