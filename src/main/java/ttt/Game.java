@@ -6,66 +6,50 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class Game {
-    BufferedReader reader;
-    PrintStream printStream;
+    Ui ui;
     boolean running;
     String[] players;
     int turn;
 
-    public Game(BufferedReader reader, PrintStream printStream) {
-        this.reader = reader;
-        this.printStream = printStream;
+    public Game(Ui ui) {
+        this.ui = ui;
         this.running = false;
         players = new String[]{"X", "O"};
         turn = 0;
     }
 
-    private void printBoard(Board board) {
-        String output = ""; 
-        for (int i=0;i<9;i++) {
-            output = output + board.getCell(i);
-            if (i % 3 == 2) output = output + "\n";
-        }
-        printStream.println(output);
+    private void runStartDisplay(Board b) {
+        ui.printMessage("start");
+        ui.printBoard(b);
     }
     
-    private void printStartMessage(Board b) {
-        printStream.println("start");
-        printBoard(b);
-    }
-    
-    private void printEndMessage(Board b) {
-        if (b.tie()) printStream.println("a tie");
-        else if (b.won("X")) printStream.println("X won");
-        else printStream.println("O won");
+    private void runEndDisplay(Board b) {
+        if (b.tie()) ui.printMessage("tie");
+        else if (b.won("X")) ui.printWinner("X");
+        else ui.printWinner("O");
+        ui.printMessage("end");
     }
 
     public void start() throws IOException, NumberFormatException {
         this.running = true;
         Board b = new Board();
-        printStartMessage(b);
+        runStartDisplay(b);
         while (running) {
-            String line = reader.readLine();
-            if (line == null) {
-                continue;
-            }
-            if (line.startsWith("exit")) {
-                return;
-            }
-            int position = Integer.parseInt(line);
+            Integer position = ui.getMove(b);
             b = b.play(position, players[turn % 2]);
-            printBoard(b);
+            ui.printBoard(b);
             turn++;
             if (b.gameOver()) {
                 break;
             }
         }
-        printEndMessage(b);
+        runEndDisplay(b);
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Game g = new Game(reader, System.out);
+        Ui ui = new Ui(reader, System.out);
+        Game g = new Game(ui);
         g.start();
     }
 }

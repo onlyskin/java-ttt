@@ -14,7 +14,7 @@ public class Board {
     }
 
     public Board play(int position, String marker) {
-        if (!this.getCell(position).equals("-")) {
+        if (!isFree(position)) {
             throw new IndexOutOfBoundsException();
         }
         Board b = new Board(this.cells);
@@ -23,10 +23,12 @@ public class Board {
     }
 
     public String getCell(int position) {
+        position = position - 1;
         return this.cells[position / 3][position % 3];
     }
 
     private void setCell(int position, String marker) {
+        position = position - 1;
         this.cells[position / 3][position % 3] = marker;
     }
 
@@ -83,5 +85,9 @@ public class Board {
             return true;
         }
         return false;
+    }
+
+    public boolean isFree(int position) {
+        return this.getCell(position).equals("-");
     }
 }

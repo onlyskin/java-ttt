@@ -3,6 +3,7 @@ package ttt;
 import org.junit.Test;
 import org.junit.Ignore;
 import static org.junit.Assert.*;
+
 import java.io.PrintStream;
 import java.io.Reader;
 import java.io.BufferedReader;
@@ -12,36 +13,55 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 public class GameTest {
-        ByteArrayOutputStream out;
+    ByteArrayOutputStream out;
+    Ui ui;
 
     @Test
     public void RunsGameToEnd() throws Exception {
-        runGameWithUserInput("0\n1\n3\n4\n6\nexit\n");
-        assertEquals("start\n" +
-                "---\n---\n---\n\n" +
-                "X--\n---\n---\n\n" +
-                "XO-\n---\n---\n\n" +
-                "XO-\nX--\n---\n\n" +
-                "XO-\nXO-\n---\n\n" +
-                "XO-\nXO-\nX--\n\n" +
-                "X won\n", out.toString());
+        runGameWithUserInput("1\n2\n4\n5\n7\nexit\n");
+        assertEquals(ui.getMessage("start") + "\n" +
+            uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"X","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"X","-","-"}}) + 
+            "X won\n" + ui.getMessage("end") + "\n", out.toString());
     }
 
     @Test
     public void RunsTiedGame() throws Exception {
-        runGameWithUserInput("0\n1\n6\n3\n7\n8\n5\n2\n4\nexit\n");
-        assertEquals("start\n" +
-                "---\n---\n---\n\n" +
-                "X--\n---\n---\n\n" +
-                "XO-\n---\n---\n\n" +
-                "XO-\n---\nX--\n\n" +
-                "XO-\nO--\nX--\n\n" +
-                "XO-\nO--\nXX-\n\n" +
-                "XO-\nO--\nXXO\n\n" +
-                "XO-\nO-X\nXXO\n\n" +
-                "XOO\nO-X\nXXO\n\n" +
-                "XOO\nOXX\nXXO\n\n" +
-                "a tie\n", out.toString());
+        runGameWithUserInput("1\n2\n7\n4\n8\n9\n6\n3\n5\nexit\n");
+        assertEquals(ui.getMessage("start") + "\n" +
+            uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"X","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","X","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","-"},{"O","-","X"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","O"},{"O","-","X"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
+            uiString(new String[][]{{"X","O","O"},{"O","X","X"},{"X","X","O"}}) + 
+            "a tie\n" + ui.getMessage("end") + "\n", out.toString());
+    }
+
+    private String uiString(String[][] c) {
+        return ui.getBoardString(new Board(c)) + "\n";
     }
 
     private void runGameWithUserInput(String userInput) throws Exception {
@@ -49,7 +69,8 @@ public class GameTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
         PrintStream output = new PrintStream(out);
-        Game game = new Game(reader, output);
+        ui = new Ui(reader, output);
+        Game game = new Game(ui);
         game.start();
     }
 }
