@@ -8,14 +8,18 @@ import java.io.IOException;
 public class App {
     Ui ui;
     GameFactory gameFactory;
+    boolean running;
 
     public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
         this.gameFactory = gameFactory;
+        this.running = false;
     }
 
     private void start() {
+        this.running = true;
         ui.printMessage("welcome");
+        ui.printMessage("gameInstructions");
     }
     
     private void end() {
@@ -23,15 +27,33 @@ public class App {
     }
 
     private void runGame() throws IOException {
-        Game game = new Game(ui);
+        Game game = gameFactory.makeGame(ui);
         game.start();
+    }
+
+    private void handleInput(String line) throws IOException {
+        if (line.equals(ui.getMessage("playAppCommand"))) {
+            runGame();
+        } else if (line.equals(ui.getMessage("exitAppCommand"))) {
+            running = false;
+        } else {
+            ui.printMessage("invalidAppCommand");
+        }
+    }
+    
+    private void acceptInput() {
+        try {
+            String line = ui.getInput();
+            handleInput(line);
+        }
+        catch (IOException e) {}
     }
 
     public void run() throws IOException {
         start();
-        // String line = ui.getInput();
-        Game game = gameFactory.makeGame(ui);
-        game.start();
+        while (running) {
+            acceptInput();
+        }
         end();
     }
 

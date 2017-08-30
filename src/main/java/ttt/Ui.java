@@ -21,6 +21,10 @@ public class Ui {
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
         messages.put("goodbye", "Thanks for playing.");
+        messages.put("gameInstructions", "Enter 'p' to play:");
+        messages.put("invalidAppCommand", "Please choose a valid option:");
+        messages.put("playAppCommand", "play");
+        messages.put("exitAppCommand", "exit");
     }
 
     private String cellString(int i, Board board) {

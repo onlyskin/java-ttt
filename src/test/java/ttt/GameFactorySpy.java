@@ -1,16 +1,16 @@
 package ttt;
 
 public class GameFactorySpy extends GameFactory {
-    public boolean makeGameCalled;
+    public Integer makeGameCallCount;
     public GameSpy gameSpy;
 
     public GameFactorySpy() {
-        this.makeGameCalled = false;
+        this.makeGameCallCount = 0;
     }
 
     @Override
     public Game makeGame(Ui ui) {
-        makeGameCalled = true;
+        makeGameCallCount++;
         gameSpy = new GameSpy();
         return gameSpy;
     }
