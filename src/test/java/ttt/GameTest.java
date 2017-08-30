@@ -68,8 +68,8 @@ public class GameTest {
         InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
-        PrintStream output = new PrintStream(out);
-        ui = new Ui(reader, output);
+        PrintStream printStream = new PrintStream(out);
+        ui = new Ui(reader, printStream);
         Game game = new Game(ui);
         game.start();
     }

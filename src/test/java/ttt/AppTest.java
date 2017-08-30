@@ -5,19 +5,33 @@ import org.junit.Ignore;
 import static org.junit.Assert.*;
 
 public class AppTest {
+    UiSpy uiSpy = new UiSpy();
+    GameFactorySpy gameFactorySpy = new GameFactorySpy();
+    App app = new App(uiSpy, gameFactorySpy);
+
     @Test
     public void tellsUiToDisplayStartMessage() throws Exception {
-        UiSpy uiSpy = new UiSpy();
-        App app = new App(uiSpy);
-        app.start();
-        assertEquals("start", uiSpy.printMessageCalledWith);
+        app.run();
+        assertTrue(uiSpy.printMessageCalledWithWelcome);
     }
 
     @Test
     public void tellsUiToDisplayEndMessage() throws Exception {
-        UiSpy uiSpy = new UiSpy();
-        App app = new App(uiSpy);
-        app.end();
-        assertEquals("end", uiSpy.printMessageCalledWith);
+        app.run();
+        assertTrue(uiSpy.printMessageCalledWithGoodbye);
+    }
+
+    @Ignore
+    @Test
+    public void callsGetInputOnUi() throws Exception {
+        app.run();
+        assertTrue(uiSpy.getInputCalled);
+    }
+
+    @Test
+    public void callsMakeGameOnGameFactorySpyAndStartsTheGame() throws Exception {
+        app.run();
+        assertTrue(gameFactorySpy.makeGameCalled);
+        assertTrue(gameFactorySpy.gameSpy.startCalled);
     }
 }

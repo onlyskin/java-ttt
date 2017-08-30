@@ -7,13 +7,11 @@ import java.io.IOException;
 
 public class Game {
     Ui ui;
-    boolean running;
     String[] players;
     int turn;
 
     public Game(Ui ui) {
         this.ui = ui;
-        this.running = false;
         players = new String[]{"X", "O"};
         turn = 0;
     }
@@ -29,17 +27,13 @@ public class Game {
     }
 
     public void start() throws IOException, NumberFormatException {
-        this.running = true;
         Board b = new Board();
         runStartDisplay(b);
-        while (running) {
+        while (!b.gameOver()) {
             Integer position = ui.getMove(b);
             b = b.play(position, players[turn % 2]);
             ui.printBoard(b);
             turn++;
-            if (b.gameOver()) {
-                break;
-            }
         }
         runEndDisplay(b);
     }

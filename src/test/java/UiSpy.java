@@ -1,15 +1,26 @@
 package ttt;
 
 public class UiSpy extends Ui {
-    public String printMessageCalledWith;
+    public boolean printMessageCalledWithWelcome;
+    public boolean printMessageCalledWithGoodbye;
+    public boolean getInputCalled;
 
     public UiSpy() {
         super(null, null);
-        this.printMessageCalledWith = null;
+        this.printMessageCalledWithWelcome = false;
+        this.printMessageCalledWithGoodbye = false;
+        this.getInputCalled = false;
     }
 
     @Override
     public void printMessage(String id) {
-        printMessageCalledWith = id;
+        if (id == "welcome") printMessageCalledWithWelcome = true;
+        else if (id == "goodbye") printMessageCalledWithGoodbye = true;
+    }
+
+    @Override
+    public String getInput() {
+        getInputCalled = true;
+        return "";
     }
 }

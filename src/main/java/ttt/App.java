@@ -7,17 +7,19 @@ import java.io.IOException;
 
 public class App {
     Ui ui;
+    GameFactory gameFactory;
 
-    public App(Ui ui) {
+    public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
+        this.gameFactory = gameFactory;
     }
 
-    public void start() {
-        ui.printMessage("start");
+    private void start() {
+        ui.printMessage("welcome");
     }
     
-    public void end() {
-        ui.printMessage("end");
+    private void end() {
+        ui.printMessage("goodbye");
     }
 
     private void runGame() throws IOException {
@@ -25,16 +27,19 @@ public class App {
         game.start();
     }
 
-    private void run() throws IOException {
+    public void run() throws IOException {
         start();
-        runGame();
+        // String line = ui.getInput();
+        Game game = gameFactory.makeGame(ui);
+        game.start();
         end();
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Ui ui = new Ui(reader, System.out);
-        App app = new App(ui);
+        GameFactory gameFactory = new GameFactory();
+        App app = new App(ui, gameFactory);
         app.run();
     }
 }
