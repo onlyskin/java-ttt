@@ -34,14 +34,7 @@ public class Game {
         Board b = new Board();
         runStartDisplay(b);
         while (running) {
-            String line = ui.getInput();
-            if (line == null) {
-                continue;
-            }
-            if (line.startsWith("exit")) {
-                return;
-            }
-            int position = Integer.parseInt(line);
+            Integer position = ui.getMove(b);
             b = b.play(position, players[turn % 2]);
             ui.printBoard(b);
             turn++;

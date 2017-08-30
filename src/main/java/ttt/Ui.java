@@ -18,6 +18,7 @@ public class Ui {
         this.printStream = printStream;
         messages.put("start", "start");
         messages.put("tie", "a tie");
+        messages.put("getMove", "Please choose a cell:");
     }
 
     private String cellString(int i, Board board) {
@@ -45,6 +46,10 @@ public class Ui {
         printStream.println(getBoardString(board));
     }
 
+    public String getMessage(String id) {
+        return messages.get(id);
+    }
+
     public void printMessage(String id) {
         String output = messages.get(id);
         printStream.println(output);
@@ -59,6 +64,7 @@ public class Ui {
     }
 
     public Integer getMove(Board board) throws IOException {
+        printMessage("getMove");
         Integer level = null;
         try {
             level = Integer.parseInt(reader.readLine());

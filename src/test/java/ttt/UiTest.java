@@ -42,11 +42,16 @@ public class UiTest {
     public void getMoveTriesAgainUntilInt() throws Exception {
         Board board = new Board();
         assertEquals(new Integer(6), ui.getMove(board));
+        assertEquals(ui.getMessage("getMove") + "\n" +
+            ui.getMessage("getMove") + "\n", out.toString());
     }
 
     @Test
     public void getMoveTriesAgainIfCellTaken() throws Exception {
         Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
         assertEquals(new Integer(5), ui.getMove(board));
+        assertEquals(ui.getMessage("getMove") + "\n" +
+            ui.getMessage("getMove") + "\n" + ui.getMessage("getMove") + "\n",
+            out.toString());
     }
 }

@@ -21,10 +21,15 @@ public class GameTest {
         runGameWithUserInput("1\n2\n4\n5\n7\nexit\n");
         assertEquals("start\n" +
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"X","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"X","-","-"}}) + 
             "X won\n", out.toString());
     }
@@ -34,14 +39,23 @@ public class GameTest {
         runGameWithUserInput("1\n2\n7\n4\n8\n9\n6\n3\n5\nexit\n");
         assertEquals("start\n" +
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"-","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"-","-","-"},{"X","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","-","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","X","-"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"O","-","-"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"O","-","X"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","O"},{"O","-","X"},{"X","X","O"}}) + 
+            ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","O"},{"O","X","X"},{"X","X","O"}}) + 
             "a tie\n", out.toString());
     }
