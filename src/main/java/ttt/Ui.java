@@ -19,6 +19,7 @@ public class Ui {
         messages.put("start", "start");
         messages.put("tie", "a tie");
         messages.put("getMove", "Please choose a cell:");
+        messages.put("invalidMove", "Please choose a valid cell:");
     }
 
     private String cellString(int i, Board board) {
@@ -64,17 +65,22 @@ public class Ui {
     }
 
     public Integer getMove(Board board) throws IOException {
-        printMessage("getMove");
+        return getMove(board, 0);
+    }
+
+    private Integer getMove(Board board, int depth) throws IOException {
+        if (depth == 0) printMessage("getMove");
+        else printMessage("invalidMove");
         Integer level = null;
         try {
             level = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            return getMove(board);
+            return getMove(board, depth+1);
         }
         if (board.isFree(level)) {
             return level;
         } else {
-            return getMove(board);
+            return getMove(board, depth+1);
         }
     }
 }
