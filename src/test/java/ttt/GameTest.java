@@ -18,7 +18,7 @@ public class GameTest {
 
     @Test
     public void RunsGameToEnd() throws Exception {
-        runGameWithUserInput("0\n1\n3\n4\n6\nexit\n");
+        runGameWithUserInput("1\n2\n4\n5\n7\nexit\n");
         assertEquals("start\n" +
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
@@ -31,7 +31,7 @@ public class GameTest {
 
     @Test
     public void RunsTiedGame() throws Exception {
-        runGameWithUserInput("0\n1\n6\n3\n7\n8\n5\n2\n4\nexit\n");
+        runGameWithUserInput("1\n2\n7\n4\n8\n9\n6\n3\n5\nexit\n");
         assertEquals("start\n" +
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 

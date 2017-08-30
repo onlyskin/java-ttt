@@ -41,7 +41,7 @@ public class Game {
             if (line.startsWith("exit")) {
                 return;
             }
-            int position = Integer.parseInt(line);
+            int position = Integer.parseInt(line) - 1;
             b = b.play(position, players[turn % 2]);
             ui.printBoard(b);
             turn++;

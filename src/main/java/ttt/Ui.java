@@ -22,7 +22,7 @@ public class Ui {
 
     private String cellString(int i, Board board) {
         if (board.getCell(i)=="-") {
-            return Integer.toString(i);
+            return Integer.toString(i+1);
         }
         return board.getCell(i);
     }
