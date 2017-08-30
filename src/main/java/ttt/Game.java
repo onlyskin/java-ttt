@@ -27,6 +27,7 @@ public class Game {
         if (b.tie()) ui.printMessage("tie");
         else if (b.won("X")) ui.printWinner("X");
         else ui.printWinner("O");
+        ui.printMessage("end");
     }
 
     public void start() throws IOException, NumberFormatException {

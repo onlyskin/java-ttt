@@ -16,10 +16,11 @@ public class Ui {
     public Ui(BufferedReader reader, PrintStream printStream) {
         this.reader = reader;
         this.printStream = printStream;
-        messages.put("start", "start");
+        messages.put("start", "Welcome to Noughts and Crosses!\nLet's play!");
         messages.put("tie", "a tie");
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
+        messages.put("end", "Thanks for playing!");
     }
 
     private String cellString(int i, Board board) {
