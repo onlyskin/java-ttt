@@ -19,7 +19,6 @@ public class Game {
     }
 
     private void runStartDisplay(Board b) {
-        ui.printMessage("start");
         ui.printBoard(b);
     }
     
@@ -27,7 +26,6 @@ public class Game {
         if (b.tie()) ui.printMessage("tie");
         else if (b.won("X")) ui.printWinner("X");
         else ui.printWinner("O");
-        ui.printMessage("end");
     }
 
     public void start() throws IOException, NumberFormatException {
@@ -44,12 +42,5 @@ public class Game {
             }
         }
         runEndDisplay(b);
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Ui ui = new Ui(reader, System.out);
-        Game g = new Game(ui);
-        g.start();
     }
 }
