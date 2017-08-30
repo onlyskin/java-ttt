@@ -13,7 +13,7 @@ import java.io.BufferedReader;
 public class UiTest {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(out);
-    ByteArrayInputStream inputStream = new ByteArrayInputStream("test\nthis\n".getBytes());
+    ByteArrayInputStream inputStream = new ByteArrayInputStream("test\n6\n5\n".getBytes());
     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
     Ui ui = new Ui(reader, printStream);
 
@@ -36,5 +36,17 @@ public class UiTest {
     @Test
     public void getsInputLine() throws Exception {
         assertEquals("test", ui.getInput());
+    }
+
+    @Test
+    public void getMoveTriesAgainUntilInt() throws Exception {
+        Board board = new Board();
+        assertEquals(new Integer(6), ui.getMove(board));
+    }
+
+    @Test
+    public void getMoveTriesAgainIfCellTaken() throws Exception {
+        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
+        assertEquals(new Integer(5), ui.getMove(board));
     }
 }

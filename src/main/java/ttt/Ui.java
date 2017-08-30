@@ -22,22 +22,22 @@ public class Ui {
 
     private String cellString(int i, Board board) {
         if (board.getCell(i)=="-") {
-            return Integer.toString(i+1);
+            return Integer.toString(i);
         }
         return board.getCell(i);
     }
 
     public String getBoardString(Board board) {
         String output = "┌───┬───┬───┐\n│ " +
-            cellString(0, board) + " │ " +
             cellString(1, board) + " │ " +
-            cellString(2, board) + " │\n│───│───│───│\n│ " +
-            cellString(3, board) + " │ " +
+            cellString(2, board) + " │ " +
+            cellString(3, board) + " │\n│───│───│───│\n│ " +
             cellString(4, board) + " │ " +
-            cellString(5, board) + " │\n│───│───│───│\n│ " +
-            cellString(6, board) + " │ " +
+            cellString(5, board) + " │ " +
+            cellString(6, board) + " │\n│───│───│───│\n│ " +
             cellString(7, board) + " │ " +
-            cellString(8, board) + " │\n└───┴───┴───┘";
+            cellString(8, board) + " │ " +
+            cellString(9, board) + " │\n└───┴───┴───┘";
         return output;
     }
 
@@ -56,5 +56,19 @@ public class Ui {
     
     public String getInput() throws IOException {
         return reader.readLine();
+    }
+
+    public Integer getMove(Board board) throws IOException {
+        Integer level = null;
+        try {
+            level = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            return getMove(board);
+        }
+        if (board.isFree(level)) {
+            return level;
+        } else {
+            return getMove(board);
+        }
     }
 }
