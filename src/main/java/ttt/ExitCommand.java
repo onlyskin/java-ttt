@@ -9,7 +9,7 @@ public class ExitCommand implements Command {
         this.ui = ui;
     }
 
-    public void execute(String command) {
+    public void execute() {
         app.exit();
     }
 

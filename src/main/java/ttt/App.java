@@ -9,11 +9,15 @@ public class App {
     Ui ui;
     GameFactory gameFactory;
     boolean running;
+    PlayCommand playCommand;
+    ExitCommand exitCommand;
 
     public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
         this.gameFactory = gameFactory;
         this.running = false;
+        this.playCommand = new PlayCommand(ui, gameFactory);
+        this.exitCommand = new ExitCommand(this, ui);
     }
 
     private void start() {
@@ -30,20 +34,11 @@ public class App {
         running = false;
     }
 
-    private void runGame() throws IOException {
-        HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
-        HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
-        Player[] players = new Player[]{humanPlayer1, humanPlayer2};
-        Game game = gameFactory.makeGame(ui, players);
-        game.start();
-    }
-
     private void handleInput(String line) throws IOException {
         if (line.equals(ui.getMessage("playAppCommand"))) {
-            runGame();
-            ui.printMessage("appMenu");
+            playCommand.execute();
         } else if (line.equals(ui.getMessage("exitAppCommand"))) {
-            running = false;
+            exitCommand.execute();
         } else {
             ui.printMessage("invalidCommand");
         }

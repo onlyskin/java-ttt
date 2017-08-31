@@ -14,7 +14,7 @@ public class ExitCommandTest {
 
     @Test
     public void CallsExitOnApp() throws Exception {
-        exitCommand.execute("exit");
+        exitCommand.execute();
         assertTrue(appSpy.exitCalled);
     }
 
