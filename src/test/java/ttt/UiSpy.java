@@ -13,6 +13,7 @@ public class UiSpy extends Ui {
     public Integer appMenuCallCount;
     public boolean printMessageCalledWithInvalidAppCommand;
     public boolean getInputCalled;
+    public boolean getMoveCalled;
 
     public UiSpy(String fakeInput) {
         super(null, null);
@@ -23,6 +24,7 @@ public class UiSpy extends Ui {
         this.appMenuCallCount = 0;
         this.printMessageCalledWithInvalidAppCommand = false;
         this.getInputCalled = false;
+        this.getMoveCalled = false;
     }
 
     @Override
@@ -39,5 +41,11 @@ public class UiSpy extends Ui {
     public String getInput() throws IOException {
         getInputCalled = true;
         return reader.readLine();
+    }
+
+    @Override
+    public Integer getMove(Board board) throws IOException {
+        getMoveCalled = true;
+        return Integer.parseInt(reader.readLine());
     }
 }

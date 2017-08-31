@@ -31,7 +31,7 @@ public class GameTest {
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"-","-","-"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"X","-","-"}}) + 
-            "X won\n", out.toString());
+            "X won\n\n", out.toString());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class GameTest {
             uiString(new String[][]{{"X","O","O"},{"O","-","X"},{"X","X","O"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","O"},{"O","X","X"},{"X","X","O"}}) + 
-            "a tie\n", out.toString());
+            "a tie\n\n", out.toString());
     }
 
     private String uiString(String[][] c) {

@@ -17,7 +17,7 @@ public class Ui {
         this.reader = reader;
         this.printStream = printStream;
         messages.put("welcome", "Welcome to Noughts and Crosses.\nLet's play a game.");
-        messages.put("tie", "a tie");
+        messages.put("tie", "a tie\n");
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
         messages.put("goodbye", "Thanks for playing.");

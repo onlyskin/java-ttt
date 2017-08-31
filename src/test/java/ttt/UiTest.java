@@ -30,7 +30,7 @@ public class UiTest {
     public void printsWinner() throws Exception {
         String marker = "X";
         ui.printWinner(marker);
-        assertEquals("X won\n", out.toString());
+        assertEquals("X won\n\n", out.toString());
     }
 
     @Test
