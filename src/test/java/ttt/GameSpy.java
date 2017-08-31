@@ -4,7 +4,7 @@ public class GameSpy extends Game {
     public boolean startCalled;
     
     public GameSpy() {
-        super(null);
+        super(null, null);
         this.startCalled = false;
     }
 

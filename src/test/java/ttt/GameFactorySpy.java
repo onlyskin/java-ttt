@@ -9,7 +9,7 @@ public class GameFactorySpy extends GameFactory {
     }
 
     @Override
-    public Game makeGame(Ui ui) {
+    public Game makeGame(Ui ui, Player[] players) {
         makeGameCallCount++;
         gameSpy = new GameSpy();
         return gameSpy;

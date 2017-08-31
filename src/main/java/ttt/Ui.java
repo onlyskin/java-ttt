@@ -61,8 +61,8 @@ public class Ui {
         printStream.println(output);
     }
 
-    public void printWinner(String marker) {
-        printStream.println(marker + " won\n");
+    public void printWinner(Player player) {
+        printStream.println(player.getMarker() + " won\n");
     }
     
     public String getInput() throws IOException {

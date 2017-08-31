@@ -13,12 +13,12 @@ public class Board {
         this.cells = cells;
     }
 
-    public Board play(int position, String marker) {
+    public Board play(int position, Player player) {
         if (!isFree(position)) {
             throw new IndexOutOfBoundsException();
         }
         Board b = new Board(this.cells);
-        b.setCell(position, marker);
+        b.setCell(position, player.getMarker());
         return b;
     }
 
@@ -32,8 +32,8 @@ public class Board {
         this.cells[position / 3][position % 3] = marker;
     }
 
-    public boolean tie() {
-        if (won()) {
+    public boolean tie(Player[] players) {
+        if (won(players)) {
             return false;
         } else {
             if (!full()) {
@@ -43,8 +43,8 @@ public class Board {
         }
     }
 
-    public boolean gameOver() {
-        if (won() || tie()) {
+    public boolean gameOver(Player[] players) {
+        if (won(players) || tie(players)) {
             return true;
         } else {
             return false;
@@ -62,15 +62,16 @@ public class Board {
         return true;
     }
     
-    private boolean won() {
-        if (won("X") || won("O")) {
+    private boolean won(Player[] players) {
+        if (won(players[0]) || won(players[1])) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean won(String m) {
+    public boolean won(Player player) {
+        String m = player.getMarker();
         String[][] c = cells;
         if (
             (c[0][0].equals(m) && c[0][1].equals(m) && c[0][2].equals(m)) ||
