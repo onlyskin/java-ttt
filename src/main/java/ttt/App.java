@@ -26,6 +26,10 @@ public class App {
         ui.printMessage("goodbye");
     }
 
+    public void exit() {
+        running = false;
+    }
+
     private void runGame() throws IOException {
         HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
         HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
@@ -41,7 +45,7 @@ public class App {
         } else if (line.equals(ui.getMessage("exitAppCommand"))) {
             running = false;
         } else {
-            ui.printMessage("invalidAppCommand");
+            ui.printMessage("invalidCommand");
         }
     }
     

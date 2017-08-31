@@ -11,7 +11,7 @@ public class UiSpy extends Ui {
     public boolean printMessageCalledWithWelcome;
     public boolean printMessageCalledWithGoodbye;
     public Integer appMenuCallCount;
-    public boolean printMessageCalledWithInvalidAppCommand;
+    public boolean printMessageCalledWithInvalidCommand;
     public boolean getInputCalled;
     public boolean getMoveCalled;
 
@@ -22,7 +22,7 @@ public class UiSpy extends Ui {
         this.printMessageCalledWithWelcome = false;
         this.printMessageCalledWithGoodbye = false;
         this.appMenuCallCount = 0;
-        this.printMessageCalledWithInvalidAppCommand = false;
+        this.printMessageCalledWithInvalidCommand = false;
         this.getInputCalled = false;
         this.getMoveCalled = false;
     }
@@ -34,7 +34,7 @@ public class UiSpy extends Ui {
         else if (id == "appMenu") {
             appMenuCallCount++;
         }
-        else if (id == "invalidAppCommand") printMessageCalledWithInvalidAppCommand = true;
+        else if (id == "invalidCommand") printMessageCalledWithInvalidCommand = true;
     }
 
     @Override
