@@ -28,9 +28,8 @@ public class UiTest {
 
     @Test
     public void printsWinner() throws Exception {
-        String marker = "X";
-        ui.printWinner(marker);
-        assertEquals("X won\n", out.toString());
+        ui.printWinner(new PlayerStub("X"));
+        assertEquals("X won\n\n", out.toString());
     }
 
     @Test

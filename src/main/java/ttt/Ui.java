@@ -16,11 +16,15 @@ public class Ui {
     public Ui(BufferedReader reader, PrintStream printStream) {
         this.reader = reader;
         this.printStream = printStream;
-        messages.put("start", "Welcome to Noughts and Crosses.\nLet's play a game.");
-        messages.put("tie", "a tie");
+        messages.put("welcome", "Welcome to Noughts and Crosses.\nLet's play a game.");
+        messages.put("tie", "a tie\n");
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
-        messages.put("end", "Thanks for playing.");
+        messages.put("goodbye", "Thanks for playing.");
+        messages.put("appMenu", "Menu:\n - play\n - exit\n-------");
+        messages.put("invalidAppCommand", "Please choose a valid option:");
+        messages.put("playAppCommand", "play");
+        messages.put("exitAppCommand", "exit");
     }
 
     private String cellString(int i, Board board) {
@@ -57,8 +61,8 @@ public class Ui {
         printStream.println(output);
     }
 
-    public void printWinner(String marker) {
-        printStream.println(marker + " won");
+    public void printWinner(Player player) {
+        printStream.println(player.getMarker() + " won\n");
     }
     
     public String getInput() throws IOException {

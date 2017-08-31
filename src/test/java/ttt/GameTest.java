@@ -19,7 +19,7 @@ public class GameTest {
     @Test
     public void RunsGameToEnd() throws Exception {
         runGameWithUserInput("1\n2\n4\n5\n7\nexit\n");
-        assertEquals(ui.getMessage("start") + "\n" +
+        assertEquals(
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
@@ -31,13 +31,13 @@ public class GameTest {
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"-","-","-"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","-"},{"X","O","-"},{"X","-","-"}}) + 
-            "X won\n" + ui.getMessage("end") + "\n", out.toString());
+            "X won\n\n", out.toString());
     }
 
     @Test
     public void RunsTiedGame() throws Exception {
         runGameWithUserInput("1\n2\n7\n4\n8\n9\n6\n3\n5\nexit\n");
-        assertEquals(ui.getMessage("start") + "\n" +
+        assertEquals(
             uiString(new String[][]{{"-","-","-"},{"-","-","-"},{"-","-","-"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","-","-"},{"-","-","-"},{"-","-","-"}}) + 
@@ -57,7 +57,7 @@ public class GameTest {
             uiString(new String[][]{{"X","O","O"},{"O","-","X"},{"X","X","O"}}) + 
             ui.getMessage("getMove") + "\n" +
             uiString(new String[][]{{"X","O","O"},{"O","X","X"},{"X","X","O"}}) + 
-            "a tie\n" + ui.getMessage("end") + "\n", out.toString());
+            "a tie\n\n", out.toString());
     }
 
     private String uiString(String[][] c) {
@@ -68,9 +68,12 @@ public class GameTest {
         InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
-        PrintStream output = new PrintStream(out);
-        ui = new Ui(reader, output);
-        Game game = new Game(ui);
+        PrintStream printStream = new PrintStream(out);
+        ui = new Ui(reader, printStream);
+        HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
+        HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
+        Player[] players = new Player[]{humanPlayer1, humanPlayer2};
+        Game game = new Game(ui, players);
         game.start();
     }
 }

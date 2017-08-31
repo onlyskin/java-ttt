@@ -14,6 +14,6 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ttt.Game'
+        attributes 'Main-Class': 'ttt.App'
     }
 }
