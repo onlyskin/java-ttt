@@ -34,7 +34,7 @@ public class Game {
         Board b = new Board();
         runStartDisplay(b);
         while (!b.gameOver(players)) {
-            Integer position = ui.getMove(b);
+            Integer position = players[turn % 2].getMove(b);
             b = b.play(position, players[turn % 2]);
             ui.printBoard(b);
             turn++;
