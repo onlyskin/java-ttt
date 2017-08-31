@@ -10,7 +10,7 @@ public class UiSpy extends Ui {
     public BufferedReader reader;
     public boolean printMessageCalledWithWelcome;
     public boolean printMessageCalledWithGoodbye;
-    public boolean printMessageCalledWithGameInstructions;
+    public Integer appMenuCallCount;
     public boolean printMessageCalledWithInvalidAppCommand;
     public boolean getInputCalled;
 
@@ -20,7 +20,7 @@ public class UiSpy extends Ui {
         reader = new BufferedReader(new InputStreamReader(inputStream));
         this.printMessageCalledWithWelcome = false;
         this.printMessageCalledWithGoodbye = false;
-        this.printMessageCalledWithGameInstructions = false;
+        this.appMenuCallCount = 0;
         this.printMessageCalledWithInvalidAppCommand = false;
         this.getInputCalled = false;
     }
@@ -29,7 +29,9 @@ public class UiSpy extends Ui {
     public void printMessage(String id) {
         if (id == "welcome") printMessageCalledWithWelcome = true;
         else if (id == "goodbye") printMessageCalledWithGoodbye = true;
-        else if (id == "gameInstructions") printMessageCalledWithGameInstructions = true;
+        else if (id == "appMenu") {
+            appMenuCallCount++;
+        }
         else if (id == "invalidAppCommand") printMessageCalledWithInvalidAppCommand = true;
     }
 

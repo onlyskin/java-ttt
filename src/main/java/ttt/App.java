@@ -19,7 +19,7 @@ public class App {
     private void start() {
         this.running = true;
         ui.printMessage("welcome");
-        ui.printMessage("gameInstructions");
+        ui.printMessage("appMenu");
     }
     
     private void end() {
@@ -34,6 +34,7 @@ public class App {
     private void handleInput(String line) throws IOException {
         if (line.equals(ui.getMessage("playAppCommand"))) {
             runGame();
+            ui.printMessage("appMenu");
         } else if (line.equals(ui.getMessage("exitAppCommand"))) {
             running = false;
         } else {

@@ -21,7 +21,7 @@ public class Ui {
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
         messages.put("goodbye", "Thanks for playing.");
-        messages.put("gameInstructions", "Enter 'p' to play:");
+        messages.put("appMenu", "Menu:\n - play\n - exit\n-------");
         messages.put("invalidAppCommand", "Please choose a valid option:");
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
@@ -62,7 +62,7 @@ public class Ui {
     }
 
     public void printWinner(String marker) {
-        printStream.println(marker + " won");
+        printStream.println(marker + " won\n");
     }
     
     public String getInput() throws IOException {
