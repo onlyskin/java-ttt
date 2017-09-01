@@ -76,14 +76,17 @@ public class Ui {
     private Integer getMove(Board board, int depth) throws IOException {
         if (depth == 0) printMessage("getMove");
         else printMessage("invalidMove");
-        Integer level = null;
+        Integer move = null;
         try {
-            level = Integer.parseInt(reader.readLine());
+            move = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
             return getMove(board, depth+1);
         }
-        if (board.isFree(level)) {
-            return level;
+        if (move > 9 || move < 1) {
+            return getMove(board, depth+1);
+        }
+        if (board.isFree(move)) {
+            return move;
         } else {
             return getMove(board, depth+1);
         }
