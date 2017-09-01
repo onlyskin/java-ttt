@@ -1,5 +1,8 @@
 package ttt;
 
+import java.util.Arrays;
+import java.util.List;
+
 import java.io.PrintStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,17 +12,29 @@ public class App {
     Ui ui;
     GameFactory gameFactory;
     boolean running;
-    PlayCommand playCommand;
-    ExitCommand exitCommand;
-    BadCommand badCommand;
+    private List<Command> commands;
 
     public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
         this.gameFactory = gameFactory;
         this.running = false;
-        this.playCommand = new PlayCommand(ui, gameFactory);
-        this.exitCommand = new ExitCommand(this, ui);
-        this.badCommand = new BadCommand(ui);
+        this.commands = buildCommands();
+    }
+
+    private List<Command> buildCommands() {
+        return Arrays.asList(
+                new PlayCommand(ui, gameFactory),
+                new ExitCommand(this, ui),
+                new BadCommand(ui));
+    }
+
+    private Command findCommand(String input) {
+        for (Command c : commands) {
+            if (c.respondsTo(input)) {
+                return c;
+            }
+        }
+        return null;
     }
 
     private void start() {
@@ -37,13 +52,8 @@ public class App {
     }
 
     private void handleInput(String line) throws IOException {
-        if (line.equals(ui.getMessage("playAppCommand"))) {
-            playCommand.execute();
-        } else if (line.equals(ui.getMessage("exitAppCommand"))) {
-            exitCommand.execute();
-        } else {
-            badCommand.execute();
-        }
+        Command command = findCommand(line);
+        command.execute();
     }
     
     private void acceptInput() {

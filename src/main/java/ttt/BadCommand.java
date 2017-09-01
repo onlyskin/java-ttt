@@ -12,6 +12,6 @@ public class BadCommand implements Command {
     }
 
     public boolean respondsTo(String command) {
-        return false;
+        return true;
     }
 }

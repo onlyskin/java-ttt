@@ -2,7 +2,7 @@ package ttt;
 
 import java.io.IOException;
 
-public class PlayCommand {
+public class PlayCommand implements Command {
     private Ui ui;
     private GameFactory gameFactory;
 
