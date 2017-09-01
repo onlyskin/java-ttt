@@ -11,6 +11,7 @@ public class App {
     boolean running;
     PlayCommand playCommand;
     ExitCommand exitCommand;
+    BadCommand badCommand;
 
     public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
@@ -18,6 +19,7 @@ public class App {
         this.running = false;
         this.playCommand = new PlayCommand(ui, gameFactory);
         this.exitCommand = new ExitCommand(this, ui);
+        this.badCommand = new BadCommand(ui);
     }
 
     private void start() {
@@ -40,7 +42,7 @@ public class App {
         } else if (line.equals(ui.getMessage("exitAppCommand"))) {
             exitCommand.execute();
         } else {
-            ui.printMessage("invalidCommand");
+            badCommand.execute();
         }
     }
     
