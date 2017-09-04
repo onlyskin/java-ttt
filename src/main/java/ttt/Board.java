@@ -32,11 +32,11 @@ public class Board {
         this.cells[position / 3][position % 3] = marker;
     }
 
-    public boolean tie(Player[] players) {
+    public boolean isTie(Player[] players) {
         if (won(players)) {
             return false;
         } else {
-            if (!full()) {
+            if (!isFull()) {
                 return false;
             }
             return true;
@@ -44,14 +44,14 @@ public class Board {
     }
 
     public boolean gameOver(Player[] players) {
-        if (won(players) || tie(players)) {
+        if (won(players) || isTie(players)) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean full() {
+    private boolean isFull() {
         for (int i=0;i<3;i++) {
             for (int j=0;j<3;j++) {
                 if (cells[i][j].equals("-")) {
@@ -63,14 +63,14 @@ public class Board {
     }
     
     private boolean won(Player[] players) {
-        if (won(players[0]) || won(players[1])) {
+        if (isWinner(players[0]) || isWinner(players[1])) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean won(Player player) {
+    public boolean isWinner(Player player) {
         String m = player.getMarker();
         String[][] c = cells;
         if (

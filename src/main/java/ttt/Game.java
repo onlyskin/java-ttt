@@ -21,9 +21,9 @@ public class Game {
     }
     
     private void runEndDisplay(Board b) {
-        if (b.tie(players)) {
+        if (b.isTie(players)) {
             ui.printMessage("tie");
-        } else if (b.won(players[0])) {
+        } else if (b.isWinner(players[0])) {
             ui.printWinner(players[0]);
         } else {
             ui.printWinner(players[1]);

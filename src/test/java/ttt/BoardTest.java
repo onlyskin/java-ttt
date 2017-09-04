@@ -10,75 +10,75 @@ public class BoardTest {
     Player[] players = new Player[]{playerStubX, playerStubO};
 
     @Test
-    public void wonReturnsFalse0() throws Exception {
+    public void isWinnerReturnsFalse0() throws Exception {
         Board board = new Board();
-        assertFalse(board.won(players[0]));
+        assertFalse(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsTrue0() throws Exception {
+    public void isWinnerReturnsTrue0() throws Exception {
         Board board = new Board(new String[][]{{"X","X","X"},{"-","-","-"},{"-","-","-"}});
-        assertTrue(board.won(players[0]));
+        assertTrue(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsFalse1() throws Exception {
+    public void isWinnerReturnsFalse1() throws Exception {
         Board board = new Board(new String[][]{{"X","-","X"},{"-","-","-"},{"-","-","-"}});
-        assertFalse(board.won(players[0]));
+        assertFalse(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsFalse2() throws Exception {
+    public void isWinnerReturnsFalse2() throws Exception {
         Board board = new Board(new String[][]{{"-","-","X"},{"-","-","X"},{"-","-","-"}});
-        assertFalse(board.won(players[0]));
+        assertFalse(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsTrue1() throws Exception {
+    public void isWinnerReturnsTrue1() throws Exception {
         Board board = new Board(new String[][]{{"-","-","X"},{"-","-","X"},{"-","-","X"}});
-        assertTrue(board.won(players[0]));
+        assertTrue(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsTrue2() throws Exception {
+    public void isWinnerReturnsTrue2() throws Exception {
         Board board = new Board(new String[][]{{"-","-","X"},{"-","X","-"},{"X","-","-"}});
-        assertTrue(board.won(players[0]));
+        assertTrue(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonReturnsTrue3() throws Exception {
+    public void isWinnerReturnsTrue3() throws Exception {
         Board board = new Board(new String[][]{{"X","-","-"},{"-","X","-"},{"-","-","X"}});
-        assertTrue(board.won(players[0]));
+        assertTrue(board.isWinner(players[0]));
     }
 
     @Test
-    public void wonHandlesO() throws Exception {
+    public void isWinnerHandlesO() throws Exception {
         Board board = new Board(new String[][]{{"O","-","-"},{"-","O","-"},{"-","-","O"}});
-        assertTrue(board.won(players[1]));
+        assertTrue(board.isWinner(players[1]));
     }
 
     @Test
-    public void tieReturnsFalse0() throws Exception {
+    public void isTieReturnsFalse0() throws Exception {
         Board board = new Board(new String[][]{{"O","-","-"},{"-","O","-"},{"-","-","O"}});
-        assertFalse(board.tie(players));
+        assertFalse(board.isTie(players));
     }
 
     @Test
-    public void tieReturnsFalse1() throws Exception {
+    public void isTieReturnsFalse1() throws Exception {
         Board board = new Board(new String[][]{{"O","X","O"},{"-","-","-"},{"-","-","-"}});
-        assertFalse(board.tie(players));
+        assertFalse(board.isTie(players));
     }
 
     @Test
-    public void tieReturnsFalse2() throws Exception {
+    public void isTieReturnsFalse2() throws Exception {
         Board board = new Board(new String[][]{{"O","X","O"},{"O","X","X"},{"O","O","X"}});
-        assertFalse(board.tie(players));
+        assertFalse(board.isTie(players));
     }
 
     @Test
-    public void tieReturnsTrue() throws Exception {
+    public void isTieReturnsTrue() throws Exception {
         Board board = new Board(new String[][]{{"O","X","O"},{"O","X","X"},{"X","O","O"}});
-        assertTrue(board.tie(players));
+        assertTrue(board.isTie(players));
     }
 
     @Test
