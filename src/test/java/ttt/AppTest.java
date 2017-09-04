@@ -19,7 +19,7 @@ public class AppTest {
     public void tellsUiToDisplayInvalidAppCommandMessage() throws Exception {
         uiSpy = new UiSpy("invalid\nexit");
         new App(uiSpy, null).run();
-        assertTrue(uiSpy.printMessageCalledWithInvalidAppCommand);
+        assertTrue(uiSpy.printMessageCalledWithInvalidCommand);
     }
 
     @Test

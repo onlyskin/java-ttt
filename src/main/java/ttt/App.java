@@ -1,5 +1,8 @@
 package ttt;
 
+import java.util.Arrays;
+import java.util.List;
+
 import java.io.PrintStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,11 +12,29 @@ public class App {
     Ui ui;
     GameFactory gameFactory;
     boolean running;
+    private List<Command> commands;
 
     public App(Ui ui, GameFactory gameFactory) {
         this.ui = ui;
         this.gameFactory = gameFactory;
         this.running = false;
+        this.commands = buildCommands();
+    }
+
+    private List<Command> buildCommands() {
+        return Arrays.asList(
+                new PlayCommand(ui, gameFactory),
+                new ExitCommand(this, ui),
+                new BadCommand(ui));
+    }
+
+    private Command findCommand(String input) {
+        for (Command c : commands) {
+            if (c.respondsTo(input)) {
+                return c;
+            }
+        }
+        return null;
     }
 
     private void start() {
@@ -26,23 +47,13 @@ public class App {
         ui.printMessage("goodbye");
     }
 
-    private void runGame() throws IOException {
-        HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
-        HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
-        Player[] players = new Player[]{humanPlayer1, humanPlayer2};
-        Game game = gameFactory.makeGame(ui, players);
-        game.start();
+    public void exit() {
+        running = false;
     }
 
     private void handleInput(String line) throws IOException {
-        if (line.equals(ui.getMessage("playAppCommand"))) {
-            runGame();
-            ui.printMessage("appMenu");
-        } else if (line.equals(ui.getMessage("exitAppCommand"))) {
-            running = false;
-        } else {
-            ui.printMessage("invalidAppCommand");
-        }
+        Command command = findCommand(line);
+        command.execute();
     }
     
     private void acceptInput() {
@@ -63,7 +74,8 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Ui ui = new Ui(reader, System.out);
+        PlayerFactory playerFactory = new PlayerFactory();
+        Ui ui = new Ui(reader, System.out, playerFactory);
         GameFactory gameFactory = new GameFactory();
         App app = new App(ui, gameFactory);
         app.run();

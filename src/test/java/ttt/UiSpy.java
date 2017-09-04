@@ -11,20 +11,22 @@ public class UiSpy extends Ui {
     public boolean printMessageCalledWithWelcome;
     public boolean printMessageCalledWithGoodbye;
     public Integer appMenuCallCount;
-    public boolean printMessageCalledWithInvalidAppCommand;
+    public boolean printMessageCalledWithInvalidCommand;
     public boolean getInputCalled;
     public boolean getMoveCalled;
+    public Integer getPlayerCalledCount;
 
     public UiSpy(String fakeInput) {
-        super(null, null);
+        super(null, null, null);
         InputStream inputStream = new ByteArrayInputStream(fakeInput.getBytes());
         reader = new BufferedReader(new InputStreamReader(inputStream));
         this.printMessageCalledWithWelcome = false;
         this.printMessageCalledWithGoodbye = false;
         this.appMenuCallCount = 0;
-        this.printMessageCalledWithInvalidAppCommand = false;
+        this.printMessageCalledWithInvalidCommand = false;
         this.getInputCalled = false;
         this.getMoveCalled = false;
+        this.getPlayerCalledCount = 0;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class UiSpy extends Ui {
         else if (id == "appMenu") {
             appMenuCallCount++;
         }
-        else if (id == "invalidAppCommand") printMessageCalledWithInvalidAppCommand = true;
+        else if (id == "invalidCommand") printMessageCalledWithInvalidCommand = true;
     }
 
     @Override
@@ -47,5 +49,11 @@ public class UiSpy extends Ui {
     public Integer getMove(Board board) throws IOException {
         getMoveCalled = true;
         return Integer.parseInt(reader.readLine());
+    }
+
+    @Override
+    public Player getPlayer() throws IOException {
+        getPlayerCalledCount++;
+        return null;
     }
 }

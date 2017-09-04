@@ -12,19 +12,24 @@ public class Ui {
     private final PrintStream printStream;
     private final BufferedReader reader;
     private final Map<String, String> messages = new HashMap<>();
+    private final PlayerFactory playerFactory;
 
-    public Ui(BufferedReader reader, PrintStream printStream) {
+    public Ui(BufferedReader reader, PrintStream printStream,
+            PlayerFactory playerFactory) {
         this.reader = reader;
         this.printStream = printStream;
+        this.playerFactory = playerFactory;
         messages.put("welcome", "Welcome to Noughts and Crosses.\nLet's play a game.");
         messages.put("tie", "a tie\n");
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
         messages.put("goodbye", "Thanks for playing.");
         messages.put("appMenu", "Menu:\n - play\n - exit\n-------");
-        messages.put("invalidAppCommand", "Please choose a valid option:");
+        messages.put("invalidCommand", "Please choose a valid option:");
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
+        messages.put("getPlayerType", "Player type (h)uman or (c)omputer:");
+        messages.put("getPlayerMarker", "Player marker:");
     }
 
     private String cellString(int i, Board board) {
@@ -69,6 +74,29 @@ public class Ui {
         return reader.readLine();
     }
 
+    private String getPlayerType() throws IOException {
+        printMessage("getPlayerType");
+        String input = getInput();
+        if (input.equals("h")) {
+            return "human";
+        }
+        else if (input.equals("c")) {
+            return "computer";
+        } else return getPlayerType();
+    }
+
+    private String getPlayerMarker() throws IOException {
+        printMessage("getPlayerMarker");
+        String input = getInput();
+        if (input.length() == 1) {
+            return input;
+        } else return getPlayerMarker();
+    }
+
+    public Player getPlayer() throws IOException {
+        return playerFactory.makePlayer(getPlayerType(), getPlayerMarker(), this);
+    }
+
     public Integer getMove(Board board) throws IOException {
         return getMove(board, 0);
     }
@@ -76,14 +104,17 @@ public class Ui {
     private Integer getMove(Board board, int depth) throws IOException {
         if (depth == 0) printMessage("getMove");
         else printMessage("invalidMove");
-        Integer level = null;
+        Integer move = null;
         try {
-            level = Integer.parseInt(reader.readLine());
+            move = Integer.parseInt(getInput());
         } catch (NumberFormatException e) {
             return getMove(board, depth+1);
         }
-        if (board.isFree(level)) {
-            return level;
+        if (move > 9 || move < 1) {
+            return getMove(board, depth+1);
+        }
+        if (board.isFree(move)) {
+            return move;
         } else {
             return getMove(board, depth+1);
         }
