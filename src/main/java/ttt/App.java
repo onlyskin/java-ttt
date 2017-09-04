@@ -74,7 +74,8 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Ui ui = new Ui(reader, System.out);
+        PlayerFactory playerFactory = new PlayerFactory();
+        Ui ui = new Ui(reader, System.out, playerFactory);
         GameFactory gameFactory = new GameFactory();
         App app = new App(ui, gameFactory);
         app.run();

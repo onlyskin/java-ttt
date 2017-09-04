@@ -12,10 +12,13 @@ public class Ui {
     private final PrintStream printStream;
     private final BufferedReader reader;
     private final Map<String, String> messages = new HashMap<>();
+    private final PlayerFactory playerFactory;
 
-    public Ui(BufferedReader reader, PrintStream printStream) {
+    public Ui(BufferedReader reader, PrintStream printStream,
+            PlayerFactory playerFactory) {
         this.reader = reader;
         this.printStream = printStream;
+        this.playerFactory = playerFactory;
         messages.put("welcome", "Welcome to Noughts and Crosses.\nLet's play a game.");
         messages.put("tie", "a tie\n");
         messages.put("getMove", "Please choose a cell:");
@@ -25,6 +28,8 @@ public class Ui {
         messages.put("invalidCommand", "Please choose a valid option:");
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
+        messages.put("getPlayerType", "Player type (h)uman or (c)omputer:");
+        messages.put("getPlayerMarker", "Player marker:");
     }
 
     private String cellString(int i, Board board) {
@@ -69,6 +74,24 @@ public class Ui {
         return reader.readLine();
     }
 
+    private String getPlayerType() throws IOException {
+        printMessage("getPlayerType");
+        String input = getInput();
+        if (input.equals("h")) {
+            return "human";
+        }
+        else return "";
+    }
+
+    private String getPlayerMarker() throws IOException {
+        printMessage("getPlayerMarker");
+        return getInput();
+    }
+
+    public Player getPlayer() throws IOException {
+        return playerFactory.makePlayer(getPlayerType(), getPlayerMarker());
+    }
+
     public Integer getMove(Board board) throws IOException {
         return getMove(board, 0);
     }
@@ -78,7 +101,7 @@ public class Ui {
         else printMessage("invalidMove");
         Integer move = null;
         try {
-            move = Integer.parseInt(reader.readLine());
+            move = Integer.parseInt(getInput());
         } catch (NumberFormatException e) {
             return getMove(board, depth+1);
         }

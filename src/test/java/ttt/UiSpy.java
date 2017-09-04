@@ -16,7 +16,7 @@ public class UiSpy extends Ui {
     public boolean getMoveCalled;
 
     public UiSpy(String fakeInput) {
-        super(null, null);
+        super(null, null, null);
         InputStream inputStream = new ByteArrayInputStream(fakeInput.getBytes());
         reader = new BufferedReader(new InputStreamReader(inputStream));
         this.printMessageCalledWithWelcome = false;

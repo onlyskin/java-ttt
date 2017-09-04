@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ExitCommandTest {
     private final AppSpy appSpy = new AppSpy();
-    private final Ui ui = new Ui(null, null);
+    private final Ui ui = new Ui(null, null, null);
     private final ExitCommand exitCommand = new ExitCommand(appSpy, ui);
 
     public ExitCommandTest() throws IOException {}

@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 public class UiTest {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(out);
+    PlayerFactorySpy playerFactorySpy = new PlayerFactorySpy();
 
     @Test
     public void printsBoard() throws Exception {
@@ -50,9 +51,25 @@ public class UiTest {
             out.toString());
     }
 
+    @Test
+    public void getPlayerPrintsMessages() throws Exception {
+        Ui ui = makeUiWithInputStream("h\nX\n");
+        ui.getPlayer();
+        assertEquals(ui.getMessage("getPlayerType") + "\n" +
+                ui.getMessage("getPlayerMarker") + "\n", out.toString());
+    }
+
+    @Test
+    public void getPlayerCallsPlayerFactorySpy() throws Exception {
+        Ui ui = makeUiWithInputStream("h\nX\n");
+        ui.getPlayer();
+        assertEquals("human", playerFactorySpy.calledType);
+        assertEquals("X", playerFactorySpy.calledMarker);
+    }
+
     private Ui makeUiWithInputStream(String input) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return new Ui(reader, printStream);
+        return new Ui(reader, printStream, playerFactorySpy);
     }
 }
