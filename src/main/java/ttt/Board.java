@@ -15,7 +15,7 @@ public class Board {
 
     public Board play(int position, Player player) {
         if (!isFree(position)) {
-            throw new IndexOutOfBoundsException();
+            return this;
         }
         Board b = new Board(this.cells);
         b.setCell(position, player.getMarker());

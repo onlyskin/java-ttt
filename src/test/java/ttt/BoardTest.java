@@ -120,10 +120,10 @@ public class BoardTest {
         assertEquals("O", board1.getCell(9));
     }
     
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void raisesErrorIfCellTaken() {
+    @Test
+    public void returnsSameBoardifCellTaken() throws Exception {
         Board board = new Board(new String[][]{{"O","-","-"},{"-","-","-"},{"-","-","-"}});
-        board.play(1, players[0]);
+        assertEquals(board, board.play(1, players[0]));
     }
     
     @Test
