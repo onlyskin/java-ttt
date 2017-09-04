@@ -10,7 +10,7 @@ public class PlayerFactorySpy extends PlayerFactory {
     }
 
     @Override
-    public Player makePlayer(String type, String marker) {
+    public Player makePlayer(String type, String marker, Ui ui) {
         this.calledType = type;
         this.calledMarker = marker;
         return null;

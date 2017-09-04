@@ -94,7 +94,7 @@ public class Ui {
     }
 
     public Player getPlayer() throws IOException {
-        return playerFactory.makePlayer(getPlayerType(), getPlayerMarker());
+        return playerFactory.makePlayer(getPlayerType(), getPlayerMarker(), this);
     }
 
     public Integer getMove(Board board) throws IOException {
