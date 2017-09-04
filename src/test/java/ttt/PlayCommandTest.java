@@ -17,7 +17,13 @@ public class PlayCommandTest {
     }
 
     @Test
-    public void RespondsToUiString() throws Exception {
+    public void respondsToUiString() throws Exception {
         assertTrue(playCommand.respondsTo(uiSpy.getMessage("playAppCommand")));
+    }
+
+    @Test
+    public void callsGetPlayerTwiceOnUi() throws Exception {
+        playCommand.execute();
+        assertEquals(new Integer(2), uiSpy.getPlayerCalledCount);
     }
 }

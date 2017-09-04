@@ -60,11 +60,27 @@ public class UiTest {
     }
 
     @Test
-    public void getPlayerCallsPlayerFactorySpy() throws Exception {
-        Ui ui = makeUiWithInputStream("h\nX\n");
+    public void getPlayerGetsHuman() throws Exception {
+        Ui ui = makeUiWithInputStream("r\nh\nX\n");
         ui.getPlayer();
         assertEquals("human", playerFactorySpy.calledType);
         assertEquals("X", playerFactorySpy.calledMarker);
+    }
+
+    @Test
+    public void getPlayerGetsComputer() throws Exception {
+        Ui ui = makeUiWithInputStream("c\nO\n");
+        ui.getPlayer();
+        assertEquals("computer", playerFactorySpy.calledType);
+        assertEquals("O", playerFactorySpy.calledMarker);
+    }
+
+    @Test
+    public void rejectsMarker() throws Exception {
+        Ui ui = makeUiWithInputStream("c\nOo\nO\n");
+        ui.getPlayer();
+        assertEquals("computer", playerFactorySpy.calledType);
+        assertEquals("O", playerFactorySpy.calledMarker);
     }
 
     private Ui makeUiWithInputStream(String input) {

@@ -80,12 +80,17 @@ public class Ui {
         if (input.equals("h")) {
             return "human";
         }
-        else return "";
+        else if (input.equals("c")) {
+            return "computer";
+        } else return getPlayerType();
     }
 
     private String getPlayerMarker() throws IOException {
         printMessage("getPlayerMarker");
-        return getInput();
+        String input = getInput();
+        if (input.length() == 1) {
+            return input;
+        } else return getPlayerMarker();
     }
 
     public Player getPlayer() throws IOException {

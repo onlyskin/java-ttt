@@ -12,9 +12,9 @@ public class PlayCommand implements Command {
     } 
 
     public void execute() throws IOException {
-        HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
-        HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
-        Player[] players = new Player[]{humanPlayer1, humanPlayer2};
+        Player player1 = ui.getPlayer();
+        Player player2 = ui.getPlayer();
+        Player[] players = new Player[]{player1, player2};
         Game game = gameFactory.makeGame(ui, players);
         game.start();
         ui.printMessage("appMenu");
