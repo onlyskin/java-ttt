@@ -21,6 +21,37 @@ public class App {
         this.commands = buildCommands();
     }
 
+    public void run() throws IOException {
+        start();
+        while (running) {
+            acceptInput();
+        }
+        end();
+    }
+
+    private void start() {
+        this.running = true;
+        ui.printMessage("welcome");
+        ui.printMessage("appMenu");
+    }
+    
+    private void end() {
+        ui.printMessage("goodbye");
+    }
+
+    private void acceptInput() {
+        try {
+            String line = ui.getInput();
+            handleInput(line);
+        }
+        catch (IOException e) {}
+    }
+
+    private void handleInput(String line) throws IOException {
+        Command command = findCommand(line);
+        command.execute();
+    }
+    
     private List<Command> buildCommands() {
         return Arrays.asList(
                 new PlayCommand(ui, gameFactory),
@@ -37,39 +68,8 @@ public class App {
         return null;
     }
 
-    private void start() {
-        this.running = true;
-        ui.printMessage("welcome");
-        ui.printMessage("appMenu");
-    }
-    
-    private void end() {
-        ui.printMessage("goodbye");
-    }
-
     public void exit() {
         running = false;
-    }
-
-    private void handleInput(String line) throws IOException {
-        Command command = findCommand(line);
-        command.execute();
-    }
-    
-    private void acceptInput() {
-        try {
-            String line = ui.getInput();
-            handleInput(line);
-        }
-        catch (IOException e) {}
-    }
-
-    public void run() throws IOException {
-        start();
-        while (running) {
-            acceptInput();
-        }
-        end();
     }
 
     public static void main(String[] args) throws IOException {
