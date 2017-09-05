@@ -22,7 +22,7 @@ jar {
 tasks.withType(Test) {
     testLogging {
         // set options for log level LIFECYCLE
-        events "passed", "skipped", "failed", "standardOut"
+        events "skipped", "failed", "standardOut"
         showExceptions true
         exceptionFormat "full"
         showCauses true
@@ -30,7 +30,7 @@ tasks.withType(Test) {
 
         // set options for log level DEBUG and INFO
         debug {
-            events "passed", "skipped", "failed", "standardOut", "standardError"
+            events "skipped", "failed", "standardOut", "standardError"
             exceptionFormat "full"
         }
         info.events = debug.events
