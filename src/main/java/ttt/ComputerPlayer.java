@@ -6,9 +6,9 @@ public class ComputerPlayer implements Player {
     String marker;
     Random random;
 
-    public ComputerPlayer(String marker) {
+    public ComputerPlayer(String marker, Random random) {
         this.marker = marker;
-        this.random = new Random();
+        this.random = random;
     }
 
     public String getMarker() {

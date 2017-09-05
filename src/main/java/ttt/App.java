@@ -48,8 +48,7 @@ public class App {
     }
 
     private void handleInput(String line) throws IOException {
-        Command command = findCommand(line);
-        command.execute();
+        findCommand(line).execute();
     }
     
     private List<Command> buildCommands() {

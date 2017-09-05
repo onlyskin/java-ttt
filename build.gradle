@@ -24,9 +24,9 @@ tasks.withType(Test) {
         // set options for log level LIFECYCLE
         events "skipped", "failed", "standardOut"
         showExceptions true
-        exceptionFormat "full"
-        showCauses true
-        showStackTraces true
+        exceptionFormat "short"
+        showCauses false
+        showStackTraces false
 
         // set options for log level DEBUG and INFO
         debug {
@@ -36,13 +36,5 @@ tasks.withType(Test) {
         info.events = debug.events
         info.exceptionFormat = debug.exceptionFormat
 
-        afterSuite { desc, result ->
-            if (!desc.parent) { // will match the outermost suite
-                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
-                def startItem = '|  ', endItem = '  |'
-                def repeatLength = startItem.length() + output.length() + endItem.length()
-                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
-            }
-        }
     }
 }
