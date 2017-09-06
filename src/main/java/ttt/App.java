@@ -53,7 +53,7 @@ public class App {
     
     private List<Command> buildCommands() {
         return Arrays.asList(
-                new PlayCommand(ui, gameFactory),
+                new PlayCommand(ui, gameFactory, new PlayerFactory()),
                 new ExitCommand(this, ui),
                 new BadCommand(ui));
     }

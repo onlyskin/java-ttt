@@ -1,18 +1,24 @@
 package ttt;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class PlayerFactorySpy extends PlayerFactory {
-    public String calledType;
-    public String calledMarker;
+    public Integer makePlayerCalledCount;
+    public List<String> calledWithType;
+    public List<String> calledWithMarker;
 
     public PlayerFactorySpy() {
-        this.calledType = null;
-        this.calledMarker = null;
+        this.makePlayerCalledCount = 0;
+        this.calledWithType = new ArrayList<String>();
+        this.calledWithMarker = new ArrayList<String>();
     }
 
     @Override
     public Player makePlayer(String type, String marker, Ui ui) {
-        this.calledType = type;
-        this.calledMarker = marker;
+        this.makePlayerCalledCount++;
+        this.calledWithType.add(type);
+        this.calledWithMarker.add(marker);
         return null;
     }
 }

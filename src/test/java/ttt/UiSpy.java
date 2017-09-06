@@ -14,7 +14,8 @@ public class UiSpy extends Ui {
     public boolean printMessageCalledWithInvalidCommand;
     public boolean getInputCalled;
     public boolean getMoveCalled;
-    public Integer getPlayerCalledCount;
+    public Integer getPlayerTypeCalledCount;
+    public Integer getPlayerMarkerCalledCount;
 
     public UiSpy(String fakeInput) {
         super(null, null, null);
@@ -26,7 +27,8 @@ public class UiSpy extends Ui {
         this.printMessageCalledWithInvalidCommand = false;
         this.getInputCalled = false;
         this.getMoveCalled = false;
-        this.getPlayerCalledCount = 0;
+        this.getPlayerTypeCalledCount = 0;
+        this.getPlayerMarkerCalledCount = 0;
     }
 
     @Override
@@ -52,8 +54,15 @@ public class UiSpy extends Ui {
     }
 
     @Override
-    public Player getPlayer() throws IOException {
-        getPlayerCalledCount++;
-        return null;
+    public String getPlayerType() throws IOException {
+        getPlayerTypeCalledCount++;
+        return "human";
     }
+
+    @Override
+    public String getPlayerMarker() throws IOException {
+        getPlayerMarkerCalledCount++;
+        return "X";
+    }
+
 }

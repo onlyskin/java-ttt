@@ -74,7 +74,7 @@ public class Ui {
         return reader.readLine();
     }
 
-    private String getPlayerType() throws IOException {
+    public String getPlayerType() throws IOException {
         printMessage("getPlayerType");
         String input = getInput();
         if (input.equals("h")) {
@@ -85,16 +85,12 @@ public class Ui {
         } else return getPlayerType();
     }
 
-    private String getPlayerMarker() throws IOException {
+    public String getPlayerMarker() throws IOException {
         printMessage("getPlayerMarker");
         String input = getInput();
         if (input.length() == 1) {
             return input;
         } else return getPlayerMarker();
-    }
-
-    public Player getPlayer() throws IOException {
-        return playerFactory.makePlayer(getPlayerType(), getPlayerMarker(), this);
     }
 
     public Integer getMove(Board board) throws IOException {
