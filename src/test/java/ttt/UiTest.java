@@ -54,43 +54,29 @@ public class UiTest {
     @Test
     public void getPlayerTypePrintsMessage() throws Exception {
         Ui ui = makeUiWithInputStream("h\n");
-        ui.getPlayerType();
-        assertEquals(ui.getMessage("getPlayerType") + "\n", out.toString());
-    }
-
-    @Test
-    public void getPlayerMarkerPrintsMessage() throws Exception {
-        Ui ui = makeUiWithInputStream("X\n");
-        ui.getPlayerMarker();
-        assertEquals(ui.getMessage("getPlayerMarker") + "\n", out.toString());
+        ui.getPlayerType("X");
+        assertEquals("Player X - " + ui.getMessage("getPlayerType") + "\n", out.toString());
     }
 
     @Test
     public void getPlayerTypeReturnsHuman() throws Exception {
         Ui ui = makeUiWithInputStream("h\n");
-        String type = ui.getPlayerType();
+        String type = ui.getPlayerType("X");
         assertEquals("human", type);
     }
 
     @Test
     public void getPlayerTypeReturnsComputer() throws Exception {
         Ui ui = makeUiWithInputStream("c\n");
-        String type = ui.getPlayerType();
+        String type = ui.getPlayerType("X");
         assertEquals("computer", type);
     }
 
     @Test
     public void getPlayerTypeRejectsOther() throws Exception {
         Ui ui = makeUiWithInputStream("r\nh\n");
-        String type = ui.getPlayerType();
+        String type = ui.getPlayerType("X");
         assertEquals("human", type);
-    }
-
-    @Test
-    public void getPlayerMarkerGetsMarkerOf1Char() throws Exception {
-        Ui ui = makeUiWithInputStream("Oo\nO\n");
-        String marker = ui.getPlayerMarker();
-        assertEquals("O", marker);
     }
 
     private Ui makeUiWithInputStream(String input) {

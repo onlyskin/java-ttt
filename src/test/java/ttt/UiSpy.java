@@ -54,15 +54,9 @@ public class UiSpy extends Ui {
     }
 
     @Override
-    public String getPlayerType() throws IOException {
+    public String getPlayerType(String marker) throws IOException {
         getPlayerTypeCalledCount++;
         return "human";
-    }
-
-    @Override
-    public String getPlayerMarker() throws IOException {
-        getPlayerMarkerCalledCount++;
-        return "X";
     }
 
 }

@@ -28,7 +28,7 @@ public class Ui {
         messages.put("invalidCommand", "Please choose a valid option:");
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
-        messages.put("getPlayerType", "Player type (h)uman or (c)omputer:");
+        messages.put("getPlayerType", "player type (h)uman or (c)omputer:");
     }
 
     private String cellString(int i, Board board) {
@@ -73,7 +73,8 @@ public class Ui {
         return reader.readLine();
     }
 
-    public String getPlayerType() throws IOException {
+    public String getPlayerType(String marker) throws IOException {
+        printStream.print("Player " + marker + " - ");
         printMessage("getPlayerType");
         String input = getInput();
         if (input.equals("h")) {
@@ -81,15 +82,7 @@ public class Ui {
         }
         else if (input.equals("c")) {
             return "computer";
-        } else return getPlayerType();
-    }
-
-    public String getPlayerMarker() throws IOException {
-        printMessage("getPlayerMarker");
-        String input = getInput();
-        if (input.length() == 1) {
-            return input;
-        } else return getPlayerMarker();
+        } else return getPlayerType(marker);
     }
 
     public Integer getMove(Board board) throws IOException {

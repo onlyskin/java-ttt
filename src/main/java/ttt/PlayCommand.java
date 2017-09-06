@@ -15,7 +15,7 @@ public class PlayCommand implements Command {
     } 
 
     private Player getPlayer(String marker) throws IOException {
-        String type = ui.getPlayerType();
+        String type = ui.getPlayerType(marker);
         Player player = playerFactory.makePlayer(type, marker, ui);
         return player;
     }
