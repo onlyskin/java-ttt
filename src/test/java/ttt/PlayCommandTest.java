@@ -33,20 +33,12 @@ public class PlayCommandTest {
 
     @Test
     public void callsMakePlayerTwiceOnPlayerFactoryWithCorrectInputs() throws Exception {
-        Ui ui = makeUiWithInputStream("h\nX\nc\nO");
+        Ui ui = makeUiWithInputStream("h\nc\n");
         PlayCommand playCommand = new PlayCommand(ui, gameFactorySpy, playerFactorySpy);
         playCommand.execute();
         assertEquals(new Integer(2), playerFactorySpy.makePlayerCalledCount);
         assertEquals("human", playerFactorySpy.calledWithType.get(0));
-        assertEquals("X", playerFactorySpy.calledWithMarker.get(0));
         assertEquals("computer", playerFactorySpy.calledWithType.get(1));
-        assertEquals("O", playerFactorySpy.calledWithMarker.get(1));
-    }
-
-    @Test
-    public void callsGetPlayerMarkerOnUiTwice() throws Exception {
-        playCommand.execute();
-        assertEquals(new Integer(2), uiSpy.getPlayerMarkerCalledCount);
     }
 
     @Test

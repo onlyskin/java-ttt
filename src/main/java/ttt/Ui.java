@@ -29,7 +29,6 @@ public class Ui {
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
         messages.put("getPlayerType", "Player type (h)uman or (c)omputer:");
-        messages.put("getPlayerMarker", "Player marker:");
     }
 
     private String cellString(int i, Board board) {

@@ -14,16 +14,15 @@ public class PlayCommand implements Command {
         this.playerFactory = playerFactory;
     } 
 
-    private Player getPlayer() throws IOException {
+    private Player getPlayer(String marker) throws IOException {
         String type = ui.getPlayerType();
-        String marker = ui.getPlayerMarker();
         Player player = playerFactory.makePlayer(type, marker, ui);
         return player;
     }
 
     public void execute() throws IOException {
-        Player player1 = getPlayer();
-        Player player2 = getPlayer();
+        Player player1 = getPlayer("X");
+        Player player2 = getPlayer("O");
         Player[] players = new Player[]{player1, player2};
         Game game = gameFactory.makeGame(ui, players);
         game.start();
