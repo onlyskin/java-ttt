@@ -12,8 +12,13 @@ public class ComputerPlayerTest {
     ComputerPlayer computerPlayer = new ComputerPlayer("O", randomSpy);
 
     @Test
-    public void computerPlayerPlaysBetween1And9() throws Exception {
+    public void hasMarker() throws Exception {
         assertEquals(computerPlayer.getMarker(), "O");
-        assertTrue(randomSpy.nextIntCalled);
-        }
+    }
+
+    @Test
+    public void callsNextIntOnRandomWith9() throws Exception {
+        computerPlayer.getMove(new Board());
+        assertTrue(randomSpy.nextIntCalledWith9);
+    }
 }
