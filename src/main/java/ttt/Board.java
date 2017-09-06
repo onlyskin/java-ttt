@@ -27,11 +27,6 @@ public class Board {
         return this.cells[position / 3][position % 3];
     }
 
-    private void setCell(int position, String marker) {
-        position = position - 1;
-        this.cells[position / 3][position % 3] = marker;
-    }
-
     public boolean isTie(Player[] players) {
         if (won(players)) {
             return false;
@@ -45,25 +40,6 @@ public class Board {
 
     public boolean gameOver(Player[] players) {
         if (won(players) || isTie(players)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isFull() {
-        for (int i=0;i<3;i++) {
-            for (int j=0;j<3;j++) {
-                if (cells[i][j].equals("-")) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
-    private boolean won(Player[] players) {
-        if (isWinner(players[0]) || isWinner(players[1])) {
             return true;
         } else {
             return false;
@@ -90,5 +66,29 @@ public class Board {
 
     public boolean isFree(int position) {
         return this.getCell(position).equals("-");
+    }
+
+    private void setCell(int position, String marker) {
+        position = position - 1;
+        this.cells[position / 3][position % 3] = marker;
+    }
+
+    private boolean isFull() {
+        for (int i=0;i<3;i++) {
+            for (int j=0;j<3;j++) {
+                if (cells[i][j].equals("-")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    private boolean won(Player[] players) {
+        if (isWinner(players[0]) || isWinner(players[1])) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

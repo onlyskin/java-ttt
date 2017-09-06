@@ -6,14 +6,26 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class Game {
-    Ui ui;
-    Player[] players;
-    int turn;
+    private final Ui ui;
+    private final Player[] players;
+    private int turn;
 
     public Game(Ui ui, Player[] players) {
         this.ui = ui;
         this.players = players;
-        turn = 0;
+        this.turn = 0;
+    }
+
+    public void start() throws IOException, NumberFormatException {
+        Board b = new Board();
+        runStartDisplay(b);
+        while (!b.gameOver(players)) {
+            Integer position = players[turn % 2].getMove(b);
+            b = b.play(position, players[turn % 2]);
+            ui.printBoard(b);
+            turn++;
+        }
+        runEndDisplay(b);
     }
 
     private void runStartDisplay(Board b) {
@@ -28,17 +40,5 @@ public class Game {
         } else {
             ui.printWinner(players[1]);
         }
-    }
-
-    public void start() throws IOException, NumberFormatException {
-        Board b = new Board();
-        runStartDisplay(b);
-        while (!b.gameOver(players)) {
-            Integer position = players[turn % 2].getMove(b);
-            b = b.play(position, players[turn % 2]);
-            ui.printBoard(b);
-            turn++;
-        }
-        runEndDisplay(b);
     }
 }

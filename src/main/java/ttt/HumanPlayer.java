@@ -3,8 +3,8 @@ package ttt;
 import java.io.IOException;
 
 public class HumanPlayer implements Player {
-    private Ui ui;
-    private String marker;
+    private final Ui ui;
+    private final String marker;
 
     public HumanPlayer(String marker, Ui ui) {
         this.ui = ui;

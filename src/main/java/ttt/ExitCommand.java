@@ -1,8 +1,8 @@
 package ttt;
 
 public class ExitCommand implements Command {
-    private App app;
-    private Ui ui;
+    private final App app;
+    private final Ui ui;
 
     public ExitCommand(App app, Ui ui) {
         this.app = app;

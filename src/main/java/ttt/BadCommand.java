@@ -1,7 +1,7 @@
 package ttt;
 
 public class BadCommand implements Command {
-    private Ui ui;
+    private final Ui ui;
 
     public BadCommand(Ui ui) {
         this.ui = ui;

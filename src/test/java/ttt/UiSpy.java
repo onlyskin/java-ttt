@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class UiSpy extends Ui {
-    public BufferedReader reader;
+    public final BufferedReader reader;
     public boolean printMessageCalledWithWelcome;
     public boolean printMessageCalledWithGoodbye;
     public Integer appMenuCallCount;

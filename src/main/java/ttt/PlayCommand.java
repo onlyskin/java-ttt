@@ -3,9 +3,9 @@ package ttt;
 import java.io.IOException;
 
 public class PlayCommand implements Command {
-    private Ui ui;
-    private GameFactory gameFactory;
-    private PlayerFactory playerFactory;
+    private final Ui ui;
+    private final GameFactory gameFactory;
+    private final PlayerFactory playerFactory;
 
     public PlayCommand(Ui ui, GameFactory gameFactory,
             PlayerFactory playerFactory) {
@@ -13,12 +13,6 @@ public class PlayCommand implements Command {
         this.gameFactory = gameFactory;
         this.playerFactory = playerFactory;
     } 
-
-    private Player getPlayer(String marker) throws IOException {
-        String type = ui.getPlayerType(marker);
-        Player player = playerFactory.makePlayer(type, marker, ui);
-        return player;
-    }
 
     public void execute() throws IOException {
         Player player1 = getPlayer("X");
@@ -31,5 +25,11 @@ public class PlayCommand implements Command {
 
     public boolean respondsTo(String command) {
         return command.startsWith(ui.getMessage("playAppCommand"));
+    }
+
+    private Player getPlayer(String marker) throws IOException {
+        String type = ui.getPlayerType(marker);
+        Player player = playerFactory.makePlayer(type, marker, ui);
+        return player;
     }
 }

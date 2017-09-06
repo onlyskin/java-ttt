@@ -1,11 +1,7 @@
 package ttt;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import static org.junit.Assert.*;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class ComputerPlayerTest {
     RandomSpy randomSpy = new RandomSpy();
