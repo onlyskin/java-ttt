@@ -30,6 +30,7 @@ public class Ui {
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
         messages.put("getPlayerType", "player type (h)uman or (c)omputer:");
+        messages.put("invalidInteger", "Please choose a valid number:");
     }
 
     public String getMessage(String id) {
@@ -113,6 +114,13 @@ public class Ui {
     }
 
     public Integer getInteger() throws IOException {
-        return null;
+        Integer input = null;
+        try {
+            input = Integer.parseInt(getInput());
+        } catch (NumberFormatException e) {
+            printMessage("invalidInteger");
+            return getInteger();
+        }
+        return input;
     }
 }

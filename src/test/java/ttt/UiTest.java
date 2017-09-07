@@ -73,6 +73,27 @@ public class UiTest {
     }
 
     @Test
+    public void getIntegerGetsValidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("3\n");
+        Integer input = ui.getInteger();
+        assertEquals(new Integer(3), input);
+    }
+
+    @Test
+    public void getIntegerRejectsInvalidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("three\n3\n");
+        Integer input = ui.getInteger();
+        assertEquals(new Integer(3), input);
+    }
+
+    @Test
+    public void getIntegerPrintMessageOnInvalidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("three\n3\n");
+        Integer input = ui.getInteger();
+        assertEquals(ui.getMessage("invalidInteger") + "\n", out.toString());
+    }
+
+    @Test
     public void getPlayerTypeRejectsOther() throws Exception {
         Ui ui = makeUiWithInputStream("r\nh\n");
         String type = ui.getPlayerType("X");
