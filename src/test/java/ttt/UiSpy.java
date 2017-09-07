@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class UiSpy extends Ui {
     public final BufferedReader reader;
     public boolean printMessageCalledWithWelcome;
@@ -16,6 +19,9 @@ public class UiSpy extends Ui {
     public boolean getMoveCalled;
     public Integer getPlayerTypeCalledCount;
     public Integer getPlayerMarkerCalledCount;
+    public Integer printMessageCalledWithCliMenuCount;
+    public List<String> printMenuChoiceCalledWith;
+    public boolean getIntegerCalled;
 
     public UiSpy(String fakeInput) {
         super(null, null, null);
@@ -29,6 +35,9 @@ public class UiSpy extends Ui {
         this.getMoveCalled = false;
         this.getPlayerTypeCalledCount = 0;
         this.getPlayerMarkerCalledCount = 0;
+        this.printMessageCalledWithCliMenuCount = 0;
+        this.printMenuChoiceCalledWith = new ArrayList();
+        this.getIntegerCalled = false;
     }
 
     @Override
@@ -39,6 +48,7 @@ public class UiSpy extends Ui {
             appMenuCallCount++;
         }
         else if (id == "invalidCommand") printMessageCalledWithInvalidCommand = true;
+        else if (id == "cliMenu") printMessageCalledWithCliMenuCount++;
     }
 
     @Override
@@ -59,4 +69,14 @@ public class UiSpy extends Ui {
         return "human";
     }
 
+    @Override
+    public void printMenuChoice(int index, String title) {
+        printMenuChoiceCalledWith.add(title);
+    }
+
+    @Override
+    public Integer getInteger() throws IOException {
+        getIntegerCalled = true;
+        return Integer.parseInt(reader.readLine());
+    }
 }

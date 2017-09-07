@@ -108,4 +108,11 @@ public class Ui {
             return getMove(board, depth+1);
         }
     }
+
+    public void printMenuChoice(int index, String title) {
+    }
+
+    public Integer getInteger() throws IOException {
+        return null;
+    }
 }

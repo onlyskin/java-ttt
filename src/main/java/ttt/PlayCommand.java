@@ -27,6 +27,10 @@ public class PlayCommand implements Command {
         return command.startsWith(ui.getMessage("playAppCommand"));
     }
 
+    public String getTitle() {
+        return "play";
+    }
+
     private Player getPlayer(String marker) throws IOException {
         String type = ui.getPlayerType(marker);
         Player player = playerFactory.makePlayer(type, marker, ui);

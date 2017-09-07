@@ -16,4 +16,8 @@ public class ExitCommand implements Command {
     public boolean respondsTo(String command) {
         return command.startsWith(ui.getMessage("exitAppCommand"));
     }
+
+    public String getTitle() {
+        return "exit";
+    }
 }
