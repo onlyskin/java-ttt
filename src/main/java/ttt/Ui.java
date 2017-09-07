@@ -112,15 +112,22 @@ public class Ui {
 
     public void printMenuChoice(int index, String title) {
     }
-
+    
     public Integer getInteger() throws IOException {
-        Integer input = null;
-        try {
-            input = Integer.parseInt(getInput());
-        } catch (NumberFormatException e) {
+        String input = getInput();
+        while (!validNumber(input)) {
             printMessage("invalidInteger");
-            return getInteger();
+            input = getInput();
         }
-        return input;
+        return Integer.parseInt(input);
+    }
+
+    private boolean validNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
