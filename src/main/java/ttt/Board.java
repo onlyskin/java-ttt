@@ -1,5 +1,8 @@
 package ttt;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Board {
     private final String[][] cells;
 
@@ -68,20 +71,29 @@ public class Board {
         return this.getCell(position).equals("-");
     }
 
+    public boolean isValidMove(int move) {
+        return availableMoves().contains(move);
+    }
+
     private void setCell(int position, String marker) {
         position = position - 1;
         this.cells[position / 3][position % 3] = marker;
     }
 
     private boolean isFull() {
+        return availableMoves().size() == 0;
+    }
+
+    private List<Integer> availableMoves() {
+        List<Integer> moves = new ArrayList();
         for (int i=0;i<3;i++) {
             for (int j=0;j<3;j++) {
                 if (cells[i][j].equals("-")) {
-                    return false;
+                    moves.add(i * 3 + j + 1);
                 }
             }
         }
-        return true;
+        return moves;
     }
     
     private boolean won(Player[] players) {

@@ -39,19 +39,6 @@ public class UiTest {
     }
 
     @Test
-    public void getMoveGetsIntegerInRangeInFreeCell() throws Exception {
-        Ui ui = makeUiWithInputStream("test\n0\n46\n6\n5\n");
-        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
-        assertEquals(new Integer(5), ui.getMove(board));
-        assertEquals(ui.getMessage("getMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n",
-            out.toString());
-    }
-
-    @Test
     public void getPlayerTypePrintsMessage() throws Exception {
         Ui ui = makeUiWithInputStream("h\n");
         ui.getPlayerType("X");

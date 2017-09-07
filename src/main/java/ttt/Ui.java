@@ -80,10 +80,6 @@ public class Ui {
         } else return getPlayerType(marker);
     }
 
-    public Integer getMove(Board board) throws IOException {
-        return getMove(board, 0);
-    }
-
     private String cellString(int i, Board board) {
         if (board.getCell(i)=="-") {
             return Integer.toString(i);
@@ -91,23 +87,14 @@ public class Ui {
         return board.getCell(i);
     }
 
-    private Integer getMove(Board board, int depth) throws IOException {
-        if (depth == 0) printMessage("getMove");
-        else printMessage("invalidMove");
-        Integer move = null;
-        try {
-            move = Integer.parseInt(getInput());
-        } catch (NumberFormatException e) {
-            return getMove(board, depth+1);
+    public Integer getMove(Board board) throws IOException {
+        printMessage("getMove");
+        Integer move = getInteger();
+        while (!board.isValidMove(move)) {
+            printMessage("invalidMove");
+            move = getInteger();
         }
-        if (move > 9 || move < 1) {
-            return getMove(board, depth+1);
-        }
-        if (board.isFree(move)) {
-            return move;
-        } else {
-            return getMove(board, depth+1);
-        }
+        return move;
     }
 
     public void printMenuChoice(int index, String title) {

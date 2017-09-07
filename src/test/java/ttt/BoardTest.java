@@ -132,4 +132,23 @@ public class BoardTest {
         assertFalse(board.isFree(1));
         assertTrue(board.isFree(2));
     }
+
+    @Test
+    public void moveIsInvalidIfOutOfRange() throws Exception {
+        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
+        assertFalse(board.isValidMove(0));
+        assertFalse(board.isValidMove(46));
+    }
+    
+    @Test
+    public void moveIsValidIfFree() throws Exception {
+        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
+        assertTrue(board.isValidMove(5));
+    }
+    
+    @Test
+    public void moveIsInvalidIfNotFree() throws Exception {
+        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
+        assertFalse(board.isValidMove(6));
+    }
 }
