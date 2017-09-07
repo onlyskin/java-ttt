@@ -4,12 +4,17 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Board {
-    private final String[][] cells;
+    private String[][] cells;
+    private String[] flatCells;
 
     public Board() {
         this.cells = new String[][]{{"-","-","-"},
                                      {"-","-","-"},
                                      {"-","-","-"}};
+    }
+
+    public Board(String[] cells) {
+        this.flatCells = cells;
     }
 
     public Board(String[][] cells) {
@@ -47,6 +52,24 @@ public class Board {
         } else {
             return false;
         }
+    }
+
+    public boolean flatIsWinner(Player player) {
+        String m = player.getMarker();
+        String[] c = flatCells;
+        if (
+            (c[0].equals(m) && c[1].equals(m) && c[2].equals(m)) ||
+            (c[3].equals(m) && c[4].equals(m) && c[5].equals(m)) ||
+            (c[6].equals(m) && c[7].equals(m) && c[8].equals(m)) ||
+            (c[0].equals(m) && c[3].equals(m) && c[6].equals(m)) ||
+            (c[1].equals(m) && c[4].equals(m) && c[7].equals(m)) ||
+            (c[2].equals(m) && c[5].equals(m) && c[8].equals(m)) ||
+            (c[0].equals(m) && c[4].equals(m) && c[8].equals(m)) ||
+            (c[2].equals(m) && c[4].equals(m) && c[6].equals(m))
+           ) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isWinner(Player player) {

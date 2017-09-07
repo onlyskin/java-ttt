@@ -17,8 +17,8 @@ public class BoardTest {
 
     @Test
     public void isWinnerReturnsTrue0() throws Exception {
-        Board board = new Board(new String[][]{{"X","X","X"},{"-","-","-"},{"-","-","-"}});
-        assertTrue(board.isWinner(players[0]));
+        Board board = new Board(new String[]{"X","X","X","-","-","-","-","-","-"});
+        assertTrue(board.flatIsWinner(players[0]));
     }
 
     @Test
