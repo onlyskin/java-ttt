@@ -1,7 +1,7 @@
 package ttt;
 
 import org.junit.Test;
-import org.junit.Ignore;
+
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +18,7 @@ public class UiTest {
     @Test
     public void printsBoard() throws Exception {
         Ui ui = makeUiWithInputStream("");
-        Board board = new Board();
+        Board board = new Board(new String[]{"-","-","-","-","-","-","-","-","-"});
         ui.printBoard(board);
         assertEquals("┌───┬───┬───┐\n│ 1 │ 2 │ 3 │\n│───│───│───│\n" +
             "│ 4 │ 5 │ 6 │\n│───│───│───│\n│ 7 │ 8 │ 9 │\n└───┴───┴───┘\n",

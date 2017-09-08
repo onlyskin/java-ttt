@@ -14,4 +14,5 @@ public class PlayerStub implements Player {
     public Integer getMove(Board board) {
         return null;
     }
+
 }
