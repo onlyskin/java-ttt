@@ -8,13 +8,20 @@ import java.util.ArrayList;
 
 public class App {
     private final Ui ui;
+    private final CliMenu cliMenu;
+    private boolean running;
     
-    public App(Ui ui) {
+    public App(Ui ui, CliMenu cliMenu) {
         this.ui = ui;
+        this.cliMenu = cliMenu;
+        this.running = false;
     }
 
     public void run() throws IOException {
-        ui.getInput();
+        this.running = true;
+        // while (running) {
+            cliMenu.displayMenu();
+        // }
     };
 
     public void exit() {};
@@ -24,11 +31,10 @@ public class App {
         PlayerFactory playerFactory = new PlayerFactory();
         GameFactory gameFactory = new GameFactory();
         Ui ui = new Ui(reader, System.out, playerFactory);
-        App app = new App(ui);
         List<Command> commands = new ArrayList();
-        commands.add(new PlayCommand(ui, gameFactory, playerFactory));
-        commands.add(new ExitCommand(app, ui));
         CliMenu cliMenu = new CliMenu(ui, commands);
-        cliMenu.displayMenu();
+        // App app = new App(ui, cliMenu);
+        commands.add(new PlayCommand(ui, gameFactory, playerFactory));
+        // commands.add(new ExitCommand(app, ui));
     }
 }

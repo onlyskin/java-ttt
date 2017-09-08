@@ -4,7 +4,7 @@ public class AppSpy extends App {
     public boolean exitCalled;
     
     public AppSpy() {
-        super(null);
+        super(null, null);
         exitCalled = false;
     }
 
