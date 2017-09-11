@@ -116,6 +116,14 @@ public class BoardTest {
     }
 
     @Test
+    public void leavesOriginalBoardCellsUnchanged() throws Exception {
+        Board board0 = new Board(new String[]{"-","-","-","-","-","X","-","-","-"});
+        Board board1 = board0.play(9, players[1].getMarker());
+        assertEquals("O", board1.getCell(9));
+        assertEquals("-", board0.getCell(9));
+    }
+    
+    @Test
     public void playsInCorrectCell() throws Exception {
         Board board0 = new Board(new String[]{"-","-","-","-","-","X","-","-","-"});
         Board board1 = board0.play(9, players[1].getMarker());

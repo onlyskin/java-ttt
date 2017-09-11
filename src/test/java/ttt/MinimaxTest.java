@@ -21,11 +21,10 @@ public class MinimaxTest {
         assertEquals(new Integer(3), move);
     }
 
-    @Ignore
     @Test
-    public void itBlocksWinningMoveAtTwoSpaces() throws Exception {
-        Board board = new Board(new String[]{"O","X","O","O","X","-","X","-","X"});
+    public void itBlocksWinningMove() throws Exception {
+        Board board = new Board(new String[]{"X","X","-","O","-","-","-","-","-"});
         Integer move = minimax.getMove(board);
-        assertEquals(new Integer(0), move);
+        assertEquals(new Integer(3), move);
     }
 }

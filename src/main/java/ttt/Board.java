@@ -18,7 +18,7 @@ public class Board {
         if (!isFree(position)) {
             return this;
         }
-        Board b = new Board(this.cells);
+        Board b = new Board(this.cells.clone());
         b.setCell(position, marker);
         return b;
     }
