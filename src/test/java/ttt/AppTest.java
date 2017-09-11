@@ -33,23 +33,23 @@ public class AppTest {
     @Test
     public void appCallsUiPrintMessageWithWelcome() throws Exception {
         UiSpy uiSpy = new UiSpy("0\n");
-        List<Command> commands = new ArrayList();
-        CliMenu cliMenu = new CliMenu(uiSpy, commands);
-        App app = new App(uiSpy, cliMenu);
-        commands.add(new ExitCommand(app, uiSpy));
-        app.run();
+        runAppWithUi(uiSpy);
         assertTrue(uiSpy.printMessageCalledWithWelcome);
     }
 
     @Test
     public void appCallsUiPrintMessageWithGoodbye() throws Exception {
         UiSpy uiSpy = new UiSpy("0\n");
-        List<Command> commands = new ArrayList();
-        CliMenu cliMenu = new CliMenu(uiSpy, commands);
-        App app = new App(uiSpy, cliMenu);
-        commands.add(new ExitCommand(app, uiSpy));
-        app.run();
+        runAppWithUi(uiSpy);
         assertTrue(uiSpy.printMessageCalledWithGoodbye);
+    }
+
+    private void runAppWithUi(Ui ui) throws IOException {
+        List<Command> commands = new ArrayList();
+        CliMenu cliMenu = new CliMenu(ui, commands);
+        App app = new App(ui, cliMenu);
+        commands.add(new ExitCommand(app, ui));
+        app.run();
     }
 
     private Ui makeUiWithInputStream(String input) {
