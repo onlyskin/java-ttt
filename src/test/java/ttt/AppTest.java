@@ -1,7 +1,6 @@
 package ttt;
 
 import org.junit.Test;
-import org.junit.Ignore;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,13 +11,14 @@ import static org.junit.Assert.*;
 public class AppTest {
     @Test
     public void appCallsDisplayMenuOnCliMenu() throws Exception {
-        CliMenuSpy cliMenuSpy = new CliMenuSpy();
+        List<Command> commands = new ArrayList();
+        CliMenuSpy cliMenuSpy = new CliMenuSpy(commands);
         App app = new App(null, cliMenuSpy);
+        commands.add(new ExitCommand(app, null));
         app.run();
         assertTrue(cliMenuSpy.displayMenuCalled);
     }
 
-    // I don't know why this is working!
     @Test
     public void appExitsWhenExitCommandMatches() throws Exception {
         Ui ui = makeUiWithInputStream("0\n");
@@ -27,15 +27,6 @@ public class AppTest {
         App app = new App(ui, cliMenu);
         commands.add(new ExitCommand(app, ui));
         app.run();
-    }
-
-    @Ignore
-    @Test
-    public void callsGetInputOnUi() throws Exception {
-        UiSpy uiSpy = new UiSpy("");
-        App app = new App(uiSpy, null);
-        app.run();
-        assertTrue(uiSpy.getInputCalled);
     }
 
     private Ui makeUiWithInputStream(String input) {

@@ -18,13 +18,15 @@ public class App {
     }
 
     public void run() throws IOException {
-        this.running = true;
-        // while (running) {
+        running = true;
+        while (running) {
             cliMenu.displayMenu();
-        // }
+        }
     };
 
-    public void exit() {};
+    public void exit() {
+        running = false;
+    };
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
