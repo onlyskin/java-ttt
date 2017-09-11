@@ -20,7 +20,6 @@ public class PlayCommand implements Command {
         Player[] players = new Player[]{player1, player2};
         Game game = gameFactory.makeGame(ui, players);
         game.start();
-        ui.printMessage("cliMenu");
     }
 
     public boolean respondsTo(String command) {

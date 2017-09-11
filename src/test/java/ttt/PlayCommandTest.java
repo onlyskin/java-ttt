@@ -23,7 +23,6 @@ public class PlayCommandTest {
         playCommand.execute();
         assertEquals(new Integer(1), gameFactorySpy.makeGameCallCount);
         assertTrue(gameFactorySpy.gameSpy.startCalled);
-        assertEquals(new Integer(1), uiSpy.cliMenuCallCount);
     }
 
     @Test
