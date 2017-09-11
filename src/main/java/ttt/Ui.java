@@ -98,6 +98,7 @@ public class Ui {
     }
 
     public void printMenuChoice(int index, String title) {
+        printStream.println(Integer.toString(index) + ") " + title);
     }
     
     public Integer getInteger() throws IOException {

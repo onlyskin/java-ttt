@@ -87,6 +87,13 @@ public class UiTest {
         assertEquals("human", type);
     }
 
+    @Test
+    public void printsMenuChoice() throws Exception {
+        Ui ui = makeUiWithInputStream("");
+        ui.printMenuChoice(0, "play");
+        assertEquals("0) play\n", out.toString());
+    }
+
     private Ui makeUiWithInputStream(String input) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
