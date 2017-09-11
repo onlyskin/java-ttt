@@ -18,7 +18,7 @@ public class Game {
         runStartDisplay(b);
         while (!b.gameOver(players)) {
             Integer position = players[turn % 2].getMove(b);
-            b = b.play(position, players[turn % 2]);
+            b = b.play(position, players[turn % 2].getMarker());
             ui.printBoard(b);
             turn++;
         }
@@ -32,7 +32,7 @@ public class Game {
     private void runEndDisplay(Board b) {
         if (b.isTie(players)) {
             ui.printMessage("tie");
-        } else if (b.isWinner(players[0])) {
+        } else if (b.isWinner(players[0].getMarker())) {
             ui.printWinner(players[0]);
         } else {
             ui.printWinner(players[1]);
