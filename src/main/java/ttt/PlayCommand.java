@@ -20,11 +20,14 @@ public class PlayCommand implements Command {
         Player[] players = new Player[]{player1, player2};
         Game game = gameFactory.makeGame(ui, players);
         game.start();
-        ui.printMessage("appMenu");
     }
 
     public boolean respondsTo(String command) {
         return command.startsWith(ui.getMessage("playAppCommand"));
+    }
+
+    public String getTitle() {
+        return "play";
     }
 
     private Player getPlayer(String marker) throws IOException {

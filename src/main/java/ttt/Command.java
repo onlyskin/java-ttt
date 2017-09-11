@@ -6,4 +6,6 @@ public interface Command {
     void execute() throws IOException;
 
     boolean respondsTo(String command);
+
+    String getTitle();
 }

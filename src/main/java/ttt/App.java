@@ -1,82 +1,53 @@
 package ttt;
 
-import java.util.Arrays;
-import java.util.List;
-
-import java.io.PrintStream;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 
 public class App {
-    Ui ui;
-    GameFactory gameFactory;
-    boolean running;
-    private List<Command> commands;
-
-    public App(Ui ui, GameFactory gameFactory) {
+    private final Ui ui;
+    private final CliMenu cliMenu;
+    private boolean running;
+    
+    public App(Ui ui, CliMenu cliMenu) {
         this.ui = ui;
-        this.gameFactory = gameFactory;
+        this.cliMenu = cliMenu;
         this.running = false;
-        this.commands = buildCommands();
     }
 
     public void run() throws IOException {
         start();
+        running = true;
         while (running) {
-            acceptInput();
+            cliMenu.displayMenu();
         }
         end();
-    }
-
-    private void start() {
-        this.running = true;
-        ui.printMessage("welcome");
-        ui.printMessage("appMenu");
-    }
-    
-    private void end() {
-        ui.printMessage("goodbye");
-    }
-
-    private void acceptInput() {
-        try {
-            String line = ui.getInput();
-            handleInput(line);
-        }
-        catch (IOException e) {}
-    }
-
-    private void handleInput(String line) throws IOException {
-        findCommand(line).execute();
-    }
-    
-    private List<Command> buildCommands() {
-        return Arrays.asList(
-                new PlayCommand(ui, gameFactory, new PlayerFactory()),
-                new ExitCommand(this, ui),
-                new BadCommand(ui));
-    }
-
-    private Command findCommand(String input) {
-        for (Command c : commands) {
-            if (c.respondsTo(input)) {
-                return c;
-            }
-        }
-        return null;
-    }
+    };
 
     public void exit() {
         running = false;
+    };
+
+    private void start() {
+        ui.printMessage("welcome");
+    }
+
+    private void end() {
+        ui.printMessage("goodbye");
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         PlayerFactory playerFactory = new PlayerFactory();
-        Ui ui = new Ui(reader, System.out, playerFactory);
         GameFactory gameFactory = new GameFactory();
-        App app = new App(ui, gameFactory);
+        Ui ui = new Ui(reader, System.out);
+        List<Command> commands = new ArrayList();
+        CliMenu cliMenu = new CliMenu(ui, commands);
+        App app = new App(ui, cliMenu);
+        commands.add(new PlayCommand(ui, gameFactory, playerFactory));
+        commands.add(new ExitCommand(app, ui));
         app.run();
     }
 }

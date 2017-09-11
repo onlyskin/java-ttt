@@ -23,7 +23,6 @@ public class PlayCommandTest {
         playCommand.execute();
         assertEquals(new Integer(1), gameFactorySpy.makeGameCallCount);
         assertTrue(gameFactorySpy.gameSpy.startCalled);
-        assertEquals(new Integer(1), uiSpy.appMenuCallCount);
     }
 
     @Test
@@ -52,6 +51,6 @@ public class PlayCommandTest {
         PrintStream printStream = new PrintStream(out);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return new Ui(reader, printStream, playerFactorySpy);
+        return new Ui(reader, printStream);
     }
 }

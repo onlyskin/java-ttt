@@ -1,7 +1,7 @@
 package ttt;
 
 import org.junit.Test;
-import org.junit.Ignore;
+
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
@@ -13,12 +13,11 @@ import java.io.BufferedReader;
 public class UiTest {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(out);
-    PlayerFactorySpy playerFactorySpy = new PlayerFactorySpy();
 
     @Test
     public void printsBoard() throws Exception {
         Ui ui = makeUiWithInputStream("");
-        Board board = new Board();
+        Board board = new Board(new String[]{"-","-","-","-","-","-","-","-","-"});
         ui.printBoard(board);
         assertEquals("┌───┬───┬───┐\n│ 1 │ 2 │ 3 │\n│───│───│───│\n" +
             "│ 4 │ 5 │ 6 │\n│───│───│───│\n│ 7 │ 8 │ 9 │\n└───┴───┴───┘\n",
@@ -36,19 +35,6 @@ public class UiTest {
     public void getsInputLine() throws Exception {
         Ui ui = makeUiWithInputStream("test\n");
         assertEquals("test", ui.getInput());
-    }
-
-    @Test
-    public void getMoveGetsIntegerInRangeInFreeCell() throws Exception {
-        Ui ui = makeUiWithInputStream("test\n0\n46\n6\n5\n");
-        Board board = new Board(new String[][]{{"-","-","-"},{"-","-","X"},{"-","-","-"}});
-        assertEquals(new Integer(5), ui.getMove(board));
-        assertEquals(ui.getMessage("getMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n" +
-            ui.getMessage("invalidMove") + "\n",
-            out.toString());
     }
 
     @Test
@@ -73,15 +59,43 @@ public class UiTest {
     }
 
     @Test
+    public void getIntegerGetsValidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("3\n");
+        Integer input = ui.getInteger();
+        assertEquals(new Integer(3), input);
+    }
+
+    @Test
+    public void getIntegerRejectsInvalidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("three\n3\n");
+        Integer input = ui.getInteger();
+        assertEquals(new Integer(3), input);
+    }
+
+    @Test
+    public void getIntegerPrintMessageOnInvalidInput() throws Exception {
+        Ui ui = makeUiWithInputStream("three\n3\n");
+        Integer input = ui.getInteger();
+        assertEquals(ui.getMessage("invalidInteger") + "\n", out.toString());
+    }
+
+    @Test
     public void getPlayerTypeRejectsOther() throws Exception {
         Ui ui = makeUiWithInputStream("r\nh\n");
         String type = ui.getPlayerType("X");
         assertEquals("human", type);
     }
 
+    @Test
+    public void printsMenuChoice() throws Exception {
+        Ui ui = makeUiWithInputStream("");
+        ui.printMenuChoice(0, "play");
+        assertEquals("0) play\n", out.toString());
+    }
+
     private Ui makeUiWithInputStream(String input) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return new Ui(reader, printStream, playerFactorySpy);
+        return new Ui(reader, printStream);
     }
 }

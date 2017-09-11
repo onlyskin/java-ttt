@@ -1,8 +1,5 @@
 package ttt;
 
-import java.io.PrintStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class Game {
@@ -17,7 +14,7 @@ public class Game {
     }
 
     public void start() throws IOException, NumberFormatException {
-        Board b = new Board();
+        Board b = new Board(new String[]{"-","-","-","-","-","-","-","-","-"});
         runStartDisplay(b);
         while (!b.gameOver(players)) {
             Integer position = players[turn % 2].getMove(b);
