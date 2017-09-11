@@ -20,7 +20,7 @@ public class CliMenuTest {
         commands.add(command0);
         cliMenu = new CliMenu(uiSpy, commands);
         cliMenu.displayMenu();
-        assertEquals(new Integer(2), uiSpy.printMessageCalledWithCliMenuCount);
+        assertEquals(new Integer(2), uiSpy.cliMenuCallCount);
     }
 
     @Test

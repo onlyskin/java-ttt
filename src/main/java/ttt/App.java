@@ -45,8 +45,9 @@ public class App {
         Ui ui = new Ui(reader, System.out, playerFactory);
         List<Command> commands = new ArrayList();
         CliMenu cliMenu = new CliMenu(ui, commands);
-        // App app = new App(ui, cliMenu);
+        App app = new App(ui, cliMenu);
         commands.add(new PlayCommand(ui, gameFactory, playerFactory));
-        // commands.add(new ExitCommand(app, ui));
+        commands.add(new ExitCommand(app, ui));
+        app.run();
     }
 }

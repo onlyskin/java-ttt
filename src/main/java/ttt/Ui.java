@@ -25,7 +25,7 @@ public class Ui {
         messages.put("getMove", "Please choose a cell:");
         messages.put("invalidMove", "Please choose a valid cell:");
         messages.put("goodbye", "Thanks for playing.");
-        messages.put("appMenu", "Menu:\n - play\n - exit\n-------");
+        messages.put("cliMenu", "Menu:");
         messages.put("invalidCommand", "Please choose a valid option:");
         messages.put("playAppCommand", "play");
         messages.put("exitAppCommand", "exit");
