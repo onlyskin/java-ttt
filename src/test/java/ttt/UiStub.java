@@ -2,7 +2,7 @@ package ttt;
 
 public class UiStub extends Ui {
     public UiStub() {
-        super(null, null, null);
+        super(null, null);
     }
 
     @Override

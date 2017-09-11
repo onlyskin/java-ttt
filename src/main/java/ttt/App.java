@@ -42,7 +42,7 @@ public class App {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         PlayerFactory playerFactory = new PlayerFactory();
         GameFactory gameFactory = new GameFactory();
-        Ui ui = new Ui(reader, System.out, playerFactory);
+        Ui ui = new Ui(reader, System.out);
         List<Command> commands = new ArrayList();
         CliMenu cliMenu = new CliMenu(ui, commands);
         App app = new App(ui, cliMenu);

@@ -68,7 +68,7 @@ public class GameTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         out = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(out);
-        ui = new Ui(reader, printStream, new PlayerFactory());
+        ui = new Ui(reader, printStream);
         HumanPlayer humanPlayer1 = new HumanPlayer("X", ui);
         HumanPlayer humanPlayer2 = new HumanPlayer("O", ui);
         Player[] players = new Player[]{humanPlayer1, humanPlayer2};

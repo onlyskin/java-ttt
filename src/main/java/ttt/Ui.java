@@ -12,13 +12,10 @@ public class Ui {
     private final PrintStream printStream;
     private final BufferedReader reader;
     private final Map<String, String> messages;
-    private final PlayerFactory playerFactory;
 
-    public Ui(BufferedReader reader, PrintStream printStream,
-            PlayerFactory playerFactory) {
+    public Ui(BufferedReader reader, PrintStream printStream) {
         this.reader = reader;
         this.printStream = printStream;
-        this.playerFactory = playerFactory;
         this.messages = new HashMap<>();
         messages.put("welcome", "Welcome to Noughts and Crosses.\nLet's play a game.");
         messages.put("tie", "a tie\n");

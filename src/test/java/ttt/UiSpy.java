@@ -24,7 +24,7 @@ public class UiSpy extends Ui {
     public boolean getIntegerCalled;
 
     public UiSpy(String fakeInput) {
-        super(null, null, null);
+        super(null, null);
         InputStream inputStream = new ByteArrayInputStream(fakeInput.getBytes());
         reader = new BufferedReader(new InputStreamReader(inputStream));
         this.printMessageCalledWithWelcome = false;

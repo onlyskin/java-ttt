@@ -13,7 +13,6 @@ import java.io.BufferedReader;
 public class UiTest {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(out);
-    PlayerFactorySpy playerFactorySpy = new PlayerFactorySpy();
 
     @Test
     public void printsBoard() throws Exception {
@@ -97,6 +96,6 @@ public class UiTest {
     private Ui makeUiWithInputStream(String input) {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        return new Ui(reader, printStream, playerFactorySpy);
+        return new Ui(reader, printStream);
     }
 }
