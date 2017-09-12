@@ -15,7 +15,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ttt.App'
+        attributes 'Main-Class': 'ttt.GuiApp'
     }
 }
 
