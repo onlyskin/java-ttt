@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.Color.*?>
+
+<VBox fx:id="vbox" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="600.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ttt.FxFXMLController">
+  <style>
+	-fx-padding: 10;
+	-fx-border-style: solid inside;
+	-fx-border-width: 2;
+	-fx-border-insets: 5;
+	-fx-border-radius: 5;
+	-fx-border-color: blue;
+  </style>
+  <children>
+    <StackPane alignment="CENTER" translateX="0" translateY="0">
+        <children>
+            <Text fx:id="text"></Text>
+        </children>
+    </StackPane>
+    <StackPane alignment="CENTER" translateX="0" translateY="0">
+        <children>
+            <Rectangle height="200.0" width="200.0"/>
+        </children>
+    </StackPane>
+  </children>
+</VBox>
