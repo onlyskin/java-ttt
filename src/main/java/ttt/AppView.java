@@ -39,8 +39,9 @@ public class AppView {
 
     private static void addCells(GridPane gridPane, String[] cells) {
         for (int i=0;i<9;i++) {
-            StackPane stackPane = CellView.render(gridPane, i/3, i%3, cells[i]);
-            gridPane.getChildren().add(stackPane);
+            Cell cell = new Cell(i+1);
+            cell.setMarker(cells[i]);
+            gridPane.getChildren().add(cell);
         }
     }
 }
