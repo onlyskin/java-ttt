@@ -1,0 +1,43 @@
+package ttt;
+
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
+import java.util.Random;
+
+public class CellView {
+
+    public static StackPane render(GridPane gridPane, int row, int column) {
+        StackPane stackPane = makeStackPane();
+        addText(stackPane);
+        setIndices(gridPane, stackPane, row, column);
+        return stackPane;
+    }
+
+    private static StackPane makeStackPane() {
+        StackPane stackPane = new StackPane();
+        stackPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
+        return stackPane;
+    }
+
+    private static void addText(StackPane stackPane) {
+        Text text = new Text();
+        text.setText(getRandomMarker());
+        stackPane.getChildren().add(text);
+    }
+
+    private static void setIndices(GridPane gridPane, StackPane stackPane, int row, int column) {
+        gridPane.setRowIndex(stackPane, row);
+        gridPane.setColumnIndex(stackPane, column);
+    }
+
+    private static String getRandomMarker() {
+        Random random = new Random();
+        if (random.nextInt(2) == 0) {
+            return "X";
+        } else {
+            return "O";
+        }
+    }
+}

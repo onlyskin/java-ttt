@@ -17,7 +17,7 @@ public class GuiApp extends Application {
     private Rectangle[] rectangles = new Rectangle[9];
 
     private Parent createContent() {
-        return AppView.render();
+        return AppView.render(600);
     }
 
     @Override
