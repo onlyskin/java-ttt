@@ -3,23 +3,12 @@ package ttt;
 import javafx.scene.Parent;
 import javafx.scene.layout.*;
 
-import java.util.Random;
-
 public class AppView {
 
-    public static Parent render(int size) {
+    public static Parent render(int size, String[] cells) {
         GridPane gridPane = makeGridPane(size);
-        addCells(gridPane);
+        addCells(gridPane, cells);
         return gridPane;
-    }
-
-    private static String getRandomMarker() {
-        Random random = new Random();
-        if (random.nextInt(2) == 0) {
-            return "X";
-        } else {
-            return "O";
-        }
     }
 
     private static GridPane makeGridPane(int size) {
@@ -48,9 +37,9 @@ public class AppView {
         }
     }
 
-    private static void addCells(GridPane gridPane) {
+    private static void addCells(GridPane gridPane, String[] cells) {
         for (int i=0;i<9;i++) {
-            StackPane stackPane = CellView.render(gridPane, i/3, i%3, getRandomMarker());
+            StackPane stackPane = CellView.render(gridPane, i/3, i%3, cells[i]);
             gridPane.getChildren().add(stackPane);
         }
     }
