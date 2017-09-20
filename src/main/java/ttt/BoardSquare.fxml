@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<fx:root type="javafx.scene.layout.StackPane" GridPane.rowIndex="0" GridPane.columnIndex="0" xmlns:fx="http://javafx.com/fxml" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    <Text text="X" style="-fx-font-size:80px;"/>
+</fx:root>

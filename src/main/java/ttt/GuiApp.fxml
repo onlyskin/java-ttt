@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.paint.Color.*?>
 
-<GridPane fx:id="flowPane" prefHeight="624.0" prefWidth="624.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ttt.FxFXMLController">
+<?import ttt.BoardSquare?>
+<GridPane fx:id="flowPane" prefHeight="624.0" prefWidth="624.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ttt.FxFXMLController" children="$boardSquares">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS"/>
         <ColumnConstraints hgrow="ALWAYS"/>
@@ -17,33 +14,4 @@
         <RowConstraints vgrow="ALWAYS"/>
         <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
-  <children>
-      <StackPane alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text1" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text2" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="2" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text3" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text4" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text5" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="2" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text6" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text7" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text8" style="-fx-font-size:80px;"/>
-      </StackPane>
-      <StackPane alignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="2" style="-fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-          <Text fx:id="text9" style="-fx-font-size:80px;"/>
-      </StackPane>
-  </children>
 </GridPane>
