@@ -4,13 +4,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.Random;
-
 public class CellView {
 
-    public static StackPane render(GridPane gridPane, int row, int column) {
+    public static StackPane render(GridPane gridPane, int row, int column, String marker) {
         StackPane stackPane = makeStackPane();
-        addText(stackPane);
+        addText(stackPane, marker);
         setIndices(gridPane, stackPane, row, column);
         return stackPane;
     }
@@ -21,23 +19,14 @@ public class CellView {
         return stackPane;
     }
 
-    private static void addText(StackPane stackPane) {
+    private static void addText(StackPane stackPane, String marker) {
         Text text = new Text();
-        text.setText(getRandomMarker());
+        text.setText(marker);
         stackPane.getChildren().add(text);
     }
 
     private static void setIndices(GridPane gridPane, StackPane stackPane, int row, int column) {
         gridPane.setRowIndex(stackPane, row);
         gridPane.setColumnIndex(stackPane, column);
-    }
-
-    private static String getRandomMarker() {
-        Random random = new Random();
-        if (random.nextInt(2) == 0) {
-            return "X";
-        } else {
-            return "O";
-        }
     }
 }
