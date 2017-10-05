@@ -12,6 +12,16 @@ public class Minimax {
         return marker;
     }
 
+    // private int score(Board board, String marker) {
+    //     if (board.isTie()) {
+    //         return 0;
+    //     } else if (board.isWinner(marker)) {
+    //         return 10;
+    //     } else {
+    //         return -10;
+    //     }
+    // }
+
     public Integer getMove(Board board) {
         Integer[] moves = board.getAvailableMoves();
         String marker = getMarker(board);

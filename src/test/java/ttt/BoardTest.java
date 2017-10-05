@@ -10,6 +10,7 @@ public class BoardTest {
     PlayerStub playerStubX = new PlayerStub("X");
     PlayerStub playerStubO = new PlayerStub("O");
     Player[] players = new Player[]{playerStubX, playerStubO};
+    String[] markers = new String[]{"X", "O"};
 
     @Test
     public void isWinnerReturnsFalse0() throws Exception {
@@ -62,49 +63,49 @@ public class BoardTest {
     @Test
     public void isTieReturnsFalse0() throws Exception {
         Board board = new Board(new String[]{"O","-","-","-","O","-","-","-","O"});
-        assertFalse(board.isTie(players));
+        assertFalse(board.isTie(markers));
     }
 
     @Test
     public void isTieReturnsFalse1() throws Exception {
         Board board = new Board(new String[]{"O","X","O","-","-","-","-","-","-"});
-        assertFalse(board.isTie(players));
+        assertFalse(board.isTie(markers));
     }
 
     @Test
     public void isTieReturnsFalse2() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","O","O","X"});
-        assertFalse(board.isTie(players));
+        assertFalse(board.isTie(markers));
     }
 
     @Test
     public void isTieReturnsTrue() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","X","O","O"});
-        assertTrue(board.isTie(players));
+        assertTrue(board.isTie(markers));
     }
 
     @Test
     public void gameOverReturnsTrue0() throws Exception {
         Board board = new Board(new String[]{"O","-","-","-","O","-","-","-","O"});
-        assertTrue(board.gameOver(players));
+        assertTrue(board.gameOver(markers));
     }
 
     @Test
     public void gameOverReturnsFalse0() throws Exception {
         Board board = new Board(new String[]{"O","X","O","-","-","-","-","-","-"});
-        assertFalse(board.gameOver(players));
+        assertFalse(board.gameOver(markers));
     }
 
     @Test
     public void gameOverReturnsTrue1() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","O","O","X"});
-        assertTrue(board.gameOver(players));
+        assertTrue(board.gameOver(markers));
     }
 
     @Test
     public void gameOverReturnsTrue2() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","X","O","O"});
-        assertTrue(board.gameOver(players));
+        assertTrue(board.gameOver(markers));
     }
 
     @Test

@@ -16,7 +16,7 @@ public class Game {
     public void start() throws IOException, NumberFormatException {
         Board b = new Board(new String[]{"-","-","-","-","-","-","-","-","-"});
         runStartDisplay(b);
-        while (!b.gameOver(players)) {
+        while (!b.gameOver(new String[]{players[0].getMarker(), players[1].getMarker()})) {
             Integer position = players[turn % 2].getMove(b);
             b = b.play(position, players[turn % 2].getMarker());
             ui.printBoard(b);
@@ -30,7 +30,7 @@ public class Game {
     }
     
     private void runEndDisplay(Board b) {
-        if (b.isTie(players)) {
+        if (b.isTie(new String[]{players[0].getMarker(), players[1].getMarker()})) {
             ui.printMessage("tie");
         } else if (b.isWinner(players[0].getMarker())) {
             ui.printWinner(players[0]);

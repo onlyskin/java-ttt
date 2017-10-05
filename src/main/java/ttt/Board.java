@@ -28,16 +28,16 @@ public class Board {
         return this.cells[position];
     }
 
-    public boolean isTie(Player[] players) {
-        if (won(players)) {
+    public boolean isTie(String[] markers) {
+        if (won(markers)) {
             return false;
         } else {
             return isFull();
         }
     }
 
-    public boolean gameOver(Player[] players) {
-        return won(players) || isTie(players);
+    public boolean gameOver(String[] markers) {
+        return won(markers) || isTie(markers);
     }
 
     public boolean isWinner(String m) {
@@ -84,12 +84,12 @@ public class Board {
         return moves;
     }
 
-    private boolean won(Player[] players) {
-        if (isWinner(players[0].getMarker()) || isWinner(players[1].getMarker())) {
+    private boolean won(String[] markers) {
+        if (isWinner(markers[0]) || isWinner(markers[1])) {
             return true;
         } else {
             return false;
         }
     }
-    
+
 }
