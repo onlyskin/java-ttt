@@ -63,49 +63,49 @@ public class BoardTest {
     @Test
     public void isTieReturnsFalse0() throws Exception {
         Board board = new Board(new String[]{"O","-","-","-","O","-","-","-","O"});
-        assertFalse(board.isTie(markers));
+        assertFalse(board.isTie());
     }
 
     @Test
     public void isTieReturnsFalse1() throws Exception {
         Board board = new Board(new String[]{"O","X","O","-","-","-","-","-","-"});
-        assertFalse(board.isTie(markers));
+        assertFalse(board.isTie());
     }
 
     @Test
     public void isTieReturnsFalse2() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","O","O","X"});
-        assertFalse(board.isTie(markers));
+        assertFalse(board.isTie());
     }
 
     @Test
     public void isTieReturnsTrue() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","X","O","O"});
-        assertTrue(board.isTie(markers));
+        assertTrue(board.isTie());
     }
 
     @Test
     public void gameOverReturnsTrue0() throws Exception {
         Board board = new Board(new String[]{"O","-","-","-","O","-","-","-","O"});
-        assertTrue(board.gameOver(markers));
+        assertTrue(board.gameOver());
     }
 
     @Test
     public void gameOverReturnsFalse0() throws Exception {
         Board board = new Board(new String[]{"O","X","O","-","-","-","-","-","-"});
-        assertFalse(board.gameOver(markers));
+        assertFalse(board.gameOver());
     }
 
     @Test
     public void gameOverReturnsTrue1() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","O","O","X"});
-        assertTrue(board.gameOver(markers));
+        assertTrue(board.gameOver());
     }
 
     @Test
     public void gameOverReturnsTrue2() throws Exception {
         Board board = new Board(new String[]{"O","X","O","O","X","X","X","O","O"});
-        assertTrue(board.gameOver(markers));
+        assertTrue(board.gameOver());
     }
 
     @Test

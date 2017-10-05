@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Board {
     private String[] cells;
+    private static final String[] MARKERS = new String[]{"X", "O"};
 
     public Board() {
         this.cells = new String[]{"-","-","-","-","-","-","-","-","-"};
@@ -28,16 +29,16 @@ public class Board {
         return this.cells[position];
     }
 
-    public boolean isTie(String[] markers) {
-        if (won(markers)) {
+    public boolean isTie() {
+        if (won()) {
             return false;
         } else {
             return isFull();
         }
     }
 
-    public boolean gameOver(String[] markers) {
-        return won(markers) || isTie(markers);
+    public boolean gameOver() {
+        return won() || isTie();
     }
 
     public boolean isWinner(String m) {
@@ -84,8 +85,8 @@ public class Board {
         return moves;
     }
 
-    private boolean won(String[] markers) {
-        if (isWinner(markers[0]) || isWinner(markers[1])) {
+    private boolean won() {
+        if (isWinner(MARKERS[0]) || isWinner(MARKERS[1])) {
             return true;
         } else {
             return false;
