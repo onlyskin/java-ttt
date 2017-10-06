@@ -2,16 +2,6 @@ package ttt;
 
 public class Minimax {
 
-    private String getMarker(Board board) {
-        Integer[] moves = board.getAvailableMoves();
-        Integer turn = 9 - moves.length;
-        String marker = "X";
-        if (turn % 2 == 1) {
-            marker = "O";
-        }
-        return marker;
-    }
-
      private int score(Board board, String marker) {
          if (board.isTie()) {
              return 0;
@@ -24,7 +14,7 @@ public class Minimax {
 
     public Integer[] minimax(Board board, String mainPlayerMarker, int depth) {
         if (mainPlayerMarker == null) {
-            mainPlayerMarker = getMarker(board);
+            mainPlayerMarker = board.getNextMarker();
         }
 
         if (board.gameOver()) {
@@ -34,7 +24,7 @@ public class Minimax {
 
         Integer[] moves = board.getAvailableMoves();
         Integer[][] nodes = new Integer[moves.length][2];
-        String marker = getMarker(board);
+        String marker = board.getNextMarker();
         for (int i=0;i<moves.length; i++) {
             Integer move = moves[i];
             Board newBoard = board.play(move, marker);

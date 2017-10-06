@@ -10,7 +10,6 @@ public class BoardTest {
     PlayerStub playerStubX = new PlayerStub("X");
     PlayerStub playerStubO = new PlayerStub("O");
     Player[] players = new Player[]{playerStubX, playerStubO};
-    String[] markers = new String[]{"X", "O"};
 
     @Test
     public void isWinnerReturnsFalse0() throws Exception {
@@ -169,5 +168,17 @@ public class BoardTest {
         Integer[] moves = board.getAvailableMoves();
         Integer[] expected = new Integer[]{4, 5, 8, 9};
         assertTrue(Arrays.equals(expected, moves));
+    }
+
+    @Test
+    public void getsNextMarker() throws Exception {
+        Board board = new Board(new String[]{"O","X","O","-","-","O","X","-","X"});
+        assertEquals("X", board.getNextMarker());
+    }
+
+    @Test
+    public void getsNextMarker2() throws Exception {
+        Board board = new Board(new String[]{"X","X","-","O","-","-","-","-","-"});
+        assertEquals("O", board.getNextMarker());
     }
 }

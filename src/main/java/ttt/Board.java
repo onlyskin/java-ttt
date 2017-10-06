@@ -93,4 +93,9 @@ public class Board {
         }
     }
 
+    public String getNextMarker() {
+        Integer[] moves = this.getAvailableMoves();
+        Integer turn = 9 - moves.length;
+        return MARKERS[turn % 2];
+    }
 }
