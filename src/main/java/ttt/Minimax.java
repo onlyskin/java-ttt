@@ -14,12 +14,10 @@ public class Minimax {
 
         Integer[] moves = board.getAvailableMoves();
         Integer[][] nodes = new Integer[moves.length][2];
-        String marker = board.getNextMarker();
         for (int i=0;i<moves.length; i++) {
-            Integer move = moves[i];
-            Board newBoard = board.play(move, marker);
+            Board newBoard = board.play(moves[i], board.getNextMarker());
             Integer[] bestMove = minimax(newBoard, mainPlayerMarker, depth+1);    
-            bestMove[1] = move;
+            bestMove[1] = moves[i];
             nodes[i] = bestMove;
         }
 
