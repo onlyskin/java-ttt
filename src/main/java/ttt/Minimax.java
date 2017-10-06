@@ -2,16 +2,6 @@ package ttt;
 
 public class Minimax {
 
-     private int score(Board board, String marker) {
-         if (board.isTie()) {
-             return 0;
-         } else if (board.isWinner(marker)) {
-             return 10;
-         } else {
-             return -10;
-         }
-     }
-
     public Integer[] minimax(Board board, String mainPlayerMarker, int depth) {
         if (mainPlayerMarker == null) {
             mainPlayerMarker = board.getNextMarker();
@@ -33,23 +23,36 @@ public class Minimax {
             nodes[i] = bestMove;
         }
 
-        Integer[] result = new Integer[]{null, null};
+        return bestByScore(nodes, depth);
+    }
+
+    private Integer[] bestByScore(Integer[][] nodes, int depth) {
+        Integer[] bestNode = new Integer[]{null, null};
         for (int i=0;i<nodes.length;i++) {
-            if (result[0] == null) {
-                result = nodes[i];
+            if (bestNode[0] == null) {
+                bestNode = nodes[i];
             } else {
                 if (depth % 2 == 0) {
-                    if (nodes[i][0] > result[0]) {
-                        result = nodes[i];
+                    if (nodes[i][0] > bestNode[0]) {
+                        bestNode = nodes[i];
                     }
                 } else {
-                    if (nodes[i][0] < result[0]) {
-                        result = nodes[i];
+                    if (nodes[i][0] < bestNode[0]) {
+                        bestNode = nodes[i];
                     }
                 }
             }
         }
+        return bestNode;
+    }
 
-        return result;
+    private int score(Board board, String marker) {
+        if (board.isTie()) {
+            return 0;
+        } else if (board.isWinner(marker)) {
+            return 10;
+        } else {
+            return -10;
+        }
     }
 }
