@@ -23,7 +23,9 @@ public class Minimax {
      }
 
     public Integer[] minimax(Board board, String mainPlayerMarker, int depth) {
-        mainPlayerMarker = getMarker(board);
+        if (mainPlayerMarker == null) {
+            mainPlayerMarker = getMarker(board);
+        }
 
         if (board.gameOver()) {
             int score = score(board, mainPlayerMarker);
