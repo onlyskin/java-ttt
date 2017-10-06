@@ -1,14 +1,12 @@
 package ttt;
 
-import java.util.Random;
-
 public class ComputerPlayer implements Player {
     private final String marker;
-    private final Random random;
+    private final Minimax minimax;
 
-    public ComputerPlayer(String marker, Random random) {
+    public ComputerPlayer(String marker, Minimax minimax) {
         this.marker = marker;
-        this.random = random;
+        this.minimax = minimax;
     }
 
     public String getMarker() {
@@ -16,15 +14,6 @@ public class ComputerPlayer implements Player {
     }
     
     public Integer getMove(Board board) {
-        Integer choice = getRandomCell();
-        if (board.isFree(choice)) {
-            return choice;
-        } else {
-            return getMove(board);
-        }
-    }
-
-    private Integer getRandomCell() {
-        return random.nextInt(9) + 1;
+        return minimax.minimax(board, null, 0)[1];
     }
 }

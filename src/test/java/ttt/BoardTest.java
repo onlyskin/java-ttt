@@ -171,13 +171,13 @@ public class BoardTest {
     }
 
     @Test
-    public void getsNextMarker() throws Exception {
+    public void getsNextMarkerX() throws Exception {
         Board board = new Board(new String[]{"O","X","O","-","-","O","X","-","X"});
         assertEquals("X", board.getNextMarker());
     }
 
     @Test
-    public void getsNextMarker2() throws Exception {
+    public void getsNextMarkerO() throws Exception {
         Board board = new Board(new String[]{"X","X","-","O","-","-","-","-","-"});
         assertEquals("O", board.getNextMarker());
     }
