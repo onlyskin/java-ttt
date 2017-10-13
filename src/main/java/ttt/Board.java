@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Board {
     private String[] cells;
+    private static final String[] MARKERS = new String[]{"X", "O"};
 
     public Board() {
         this.cells = new String[]{"-","-","-","-","-","-","-","-","-"};
@@ -14,12 +15,12 @@ public class Board {
         this.cells = cells;
     }
 
-    public Board play(int position, Player player) {
+    public Board play(int position, String marker) {
         if (!isFree(position)) {
             return this;
         }
-        Board b = new Board(this.cells);
-        b.setCell(position, player.getMarker());
+        Board b = new Board(this.cells.clone());
+        b.setCell(position, marker);
         return b;
     }
 
@@ -28,29 +29,28 @@ public class Board {
         return this.cells[position];
     }
 
-    public boolean isTie(Player[] players) {
-        if (won(players)) {
+    public boolean isTie() {
+        if (won()) {
             return false;
         } else {
             return isFull();
         }
     }
 
-    public boolean gameOver(Player[] players) {
-        return won(players) || isTie(players);
+    public boolean gameOver() {
+        return won() || isTie();
     }
 
-    public boolean isWinner(Player player) {
-        String m = player.getMarker();
+    public boolean isWinner(String m) {
         String[] c = cells;
         return (c[0].equals(m) && c[1].equals(m) && c[2].equals(m)) ||
-                (c[3].equals(m) && c[4].equals(m) && c[5].equals(m)) ||
-                (c[6].equals(m) && c[7].equals(m) && c[8].equals(m)) ||
-                (c[0].equals(m) && c[3].equals(m) && c[6].equals(m)) ||
-                (c[1].equals(m) && c[4].equals(m) && c[7].equals(m)) ||
-                (c[2].equals(m) && c[5].equals(m) && c[8].equals(m)) ||
-                (c[0].equals(m) && c[4].equals(m) && c[8].equals(m)) ||
-                (c[2].equals(m) && c[4].equals(m) && c[6].equals(m));
+               (c[3].equals(m) && c[4].equals(m) && c[5].equals(m)) ||
+               (c[6].equals(m) && c[7].equals(m) && c[8].equals(m)) ||
+               (c[0].equals(m) && c[3].equals(m) && c[6].equals(m)) ||
+               (c[1].equals(m) && c[4].equals(m) && c[7].equals(m)) ||
+               (c[2].equals(m) && c[5].equals(m) && c[8].equals(m)) ||
+               (c[0].equals(m) && c[4].equals(m) && c[8].equals(m)) ||
+               (c[2].equals(m) && c[4].equals(m) && c[6].equals(m));
     }
 
     public boolean isFree(int position) {
@@ -70,6 +70,11 @@ public class Board {
         return availableMoves().size() == 0;
     }
 
+    public Integer[] getAvailableMoves() {
+        List<Integer> moves = availableMoves();
+        return moves.toArray(new Integer[moves.size()]);
+    }
+
     private List<Integer> availableMoves() {
         List<Integer> moves = new ArrayList();
         for (int i=0;i<9;i++) {
@@ -80,12 +85,17 @@ public class Board {
         return moves;
     }
 
-    private boolean won(Player[] players) {
-        if (isWinner(players[0]) || isWinner(players[1])) {
+    private boolean won() {
+        if (isWinner(MARKERS[0]) || isWinner(MARKERS[1])) {
             return true;
         } else {
             return false;
         }
     }
-    
+
+    public String getNextMarker() {
+        Integer[] moves = this.getAvailableMoves();
+        Integer turn = 9 - moves.length;
+        return MARKERS[turn % 2];
+    }
 }
